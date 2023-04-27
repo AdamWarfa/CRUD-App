@@ -3,6 +3,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.dim {
+  backdrop-filter: brightness(40%);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -16,10 +20,10 @@ body {
   width: 30vw;
   border: 3px solid;
   border-color: #30e3c5;
+  border-radius: 20px;
   -webkit-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
   box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
   margin-bottom: 150px;
 }
 
@@ -43,8 +47,21 @@ body {
 dialog {
   width: 50%;
   height: 80%;
+  border: 3px solid;
+  border-color: #30e3c5;
+  -webkit-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  backdrop-filter: brightness(20%);
 }
 
 dialog img {
   width: 50%;
+}
+
+button {
+  border: 3px solid;
+  border-color: #30e3c5;
+  border-radius: 20px;
 }

@@ -11,14 +11,38 @@
     <title>Document</title>
   </head>
   <body>
-    <dialog id="dialog-form" open>
-      <form action="">
-        <label for="">Title:</label>
-        <input type="text" name="" id="" />
-        <label for="">Body:</label>
-        <input type="text" name="" id="" />
-        <label for="">Image:</label>
-        <input type="image" src="" alt="" />
+    <dialog id="dialog-create-post">
+      <h2>Create new post</h2>
+      <form id="form-create-post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="Type a new title" />
+        <label for="body">Body:</label>
+        <input type="text" id="body" name="body" placeholder="Type the content of your new post" />
+        <label for="image">Image:</label>
+        <input type="url" id="image" name="image" placeholder="Paste an image URL" />
+        <button>Create Post</button>
+      </form>
+    </dialog>
+    <dialog id="dialog-update-post">
+      <form id="form-update-post">
+        <h2>Do you want to update</h2>
+        <p id="dialog-update-post-title"></p>
+        <label for="title-update">Title:</label>
+        <input type="text" id="title-update" name="title" placeholder="Update title" />
+        <label for="body-update">Body:</label>
+        <input type="text" id="body-update" name="body" placeholder="Update the content of your new post" />
+        <label for="image-updae">Image:</label>
+        <input type="url" id="image-update" name="image" placeholder="Update image URL" />
+        <button id="btn-confirm-update-post">Update post</button>
+        <button id="btn-cancel-update-post">Cancel</button>
+      </form>
+    </dialog>
+    <dialog id="dialog-delete-post">
+      <h2>Do you want to delete post?</h2>
+      <p id="dialog-delete-post-title">Title of post</p>
+      <form method="dialog" id="form-delete-post">
+        <button type="button" class="btn-cancel" onclick="dialogClose()">No</button>
+        <button>Yes</button>
       </form>
     </dialog>
     <dialog id="dialog-post">
@@ -26,9 +50,10 @@
         <h2 id="dialog-title">title</h2>
         <h3 id="dialog-id">id</h3>
         <img id="dialog-img" src="blabla.jpg" alt="" />
-        <a href="#" class="btn-close">CLOSE</a>
+        <button id="btn-close">CLOSE</button>
       </div>
     </dialog>
+    <button id="btn-create-post">CREATE POST</button>
     <section class="grid"></section>
     <script src="main.js"></script>
   </body>
