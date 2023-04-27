@@ -1,15 +1,24 @@
 "use strict";
 window.addEventListener("load", initApp);
-const endPoint = "https://first-base-5d130-default-rtdb.europe-west1.firebasedatabase.app";
+const endPoint =
+  "https://first-base-5d130-default-rtdb.europe-west1.firebasedatabase.app";
 
 function initApp() {
   updatePostsGrid();
   // const postobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
   // console.log(postobject);
-  document.querySelector("#form-create-post").addEventListener("submit", createPostClicked);
-  document.querySelector("#form-update-post").addEventListener("submit", updatePostClicked);
-  document.querySelector("#form-delete-post").addEventListener("submit", deletePostClicked);
-  document.querySelector("#btn-create-post").addEventListener("click", showCreatePostDialog);
+  document
+    .querySelector("#form-create-post")
+    .addEventListener("submit", createPostClicked);
+  document
+    .querySelector("#form-update-post")
+    .addEventListener("submit", updatePostClicked);
+  document
+    .querySelector("#form-delete-post")
+    .addEventListener("submit", deletePostClicked);
+  document
+    .querySelector("#btn-create-post")
+    .addEventListener("click", showCreatePostDialog);
 }
 
 async function updatePostsGrid() {
@@ -63,9 +72,15 @@ function showPost(postObject) {
   );
 
   // document.querySelector(".grid article:last-child").addEventListener("click", postClicked);
-  document.querySelector(".grid article:last-child img").addEventListener("click", postClicked);
-  document.querySelector(".grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector(".grid article:last-child #btn-update").addEventListener("click", updateClicked);
+  document
+    .querySelector(".grid article:last-child img")
+    .addEventListener("click", postClicked);
+  document
+    .querySelector(".grid article:last-child #btn-delete")
+    .addEventListener("click", deleteClicked);
+  document
+    .querySelector(".grid article:last-child #btn-update")
+    .addEventListener("click", updateClicked);
 
   function postClicked() {
     document.querySelector("#dialog-title").textContent = `${postObject.title}`;
@@ -78,8 +93,11 @@ function showPost(postObject) {
   }
 
   function deleteClicked() {
-    document.querySelector("#dialog-delete-post-title").textContent = postObject.title;
-    document.querySelector("#form-delete-post").setAttribute("data-id", postObject.id);
+    document.querySelector("#dialog-delete-post-title").textContent =
+      postObject.title;
+    document
+      .querySelector("#form-delete-post")
+      .setAttribute("data-id", postObject.id);
     document.querySelector("#dialog-delete-post").showModal();
   }
 
