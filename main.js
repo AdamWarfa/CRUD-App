@@ -12,7 +12,7 @@ function initApp() {
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
-
+  
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
@@ -52,15 +52,9 @@ function showMovies(listOfMovies) {
 
 function showMovie(movieObject) {
   let genreString = movieObject.genres.toString();
-  let genreFirst = genreString.split(",")[0];
-  let genreSecond = genreString.split(",")[1];
-
-  let movieGenres = `${genreFirst} & ${genreSecond}`;
-  if (genreSecond == undefined) {
-    movieGenres = `${genreFirst}`;
-  }
-
-  console.log(movieObject.genres);
+  let genreFirst = genreString.split(",")[0].trim();
+  let genreSecond = genreString.split(",")[1].trim();
+  console.log(genreSecond);
 
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
@@ -70,7 +64,7 @@ function showMovie(movieObject) {
 <h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
     <p id="list-director">${movieObject.director}</p>
-    <p id="list-genre">${movieGenres}</p>
+    <p id="list-genre">${genreFirst} & ${genreSecond}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
@@ -213,7 +207,7 @@ function searchMovies(searchValue) {
     return title.includes(searchValue);
   }
 
-  return results;
+  return results;}
 }
 
 // function parseJSONString(jsonString) {
