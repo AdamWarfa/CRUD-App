@@ -3,58 +3,58 @@ window.addEventListener("load", initApp);
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function initApp() {
-  updatePostsGrid();
-  // const postobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
-  // console.log(postobject);
-  document.querySelector("#form-create-post").addEventListener("submit", createPostClicked);
-  document.querySelector("#form-update-post").addEventListener("submit", updatePostClicked);
-  document.querySelector("#form-delete-post").addEventListener("submit", deletePostClicked);
-  document.querySelector("#btn-create-post").addEventListener("click", showCreatePostDialog);
+  updateMoviesGrid();
+  // const movieobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
+  // console.log(movieobject);
+  document.querySelector("#form-create-movie").addEventListener("submit", createMovieClicked);
+  document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
+  document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
+  document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
 }
 
-async function updatePostsGrid() {
-  const posts = await getPosts();
-  showPosts(posts);
+async function updateMoviesGrid() {
+  const movies = await getMovies();
+  showMovies(movies);
 }
 
-async function getPosts() {
+async function getMovies() {
   const response = await fetch(`${endPoint}/movies.json`);
   const data = await response.json();
-  const posts = preparePostData(data);
+  const movies = prepareMovieData(data);
 
-  return posts;
+  return movies;
 }
 
-function preparePostData(dataObject) {
-  const postArray = [];
+function prepareMovieData(dataObject) {
+  const movieArray = [];
   for (const key in dataObject) {
-    const post = dataObject[key];
-    post.id = key;
-    console.log(post);
-    postArray.push(post);
+    const movie = dataObject[key];
+    movie.id = key;
+    console.log(movie);
+    movieArray.push(movie);
   }
-  console.log(postArray);
-  return postArray;
+  console.log(movieArray);
+  return movieArray;
 }
 
-function showPosts(listOfPosts) {
+function showMovies(listOfMovies) {
   document.querySelector(".grid").innerHTML = "";
 
-  for (const post of listOfPosts) {
-    showPost(post);
+  for (const movie of listOfMovies) {
+    showMovie(movie);
   }
 }
 
-function showPost(postObject) {
+function showMovie(movieObject) {
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
     /*html*/ `
 
 <article class="list-entry">
-<h2 id="list-id">${postObject.id}</h2>
-    <img id="list-image" src = "${postObject.posterUrl}"/>
-    <h2 id="list-name">${postObject.title}</h2>
-    <p id="list-description">${postObject.plot}</p>
+<h2 id="list-id">${movieObject.id}</h2>
+    <img id="list-image" src = "${movieObject.posterUrl}"/>
+    <h2 id="list-name">${movieObject.title}</h2>
+    <p id="list-description">${movieObject.plot}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
@@ -62,54 +62,54 @@ function showPost(postObject) {
 `
   );
 
-  // document.querySelector(".grid article:last-child").addEventListener("click", postClicked);
-  document.querySelector(".grid article:last-child img").addEventListener("click", postClicked);
+  // document.querySelector(".grid article:last-child").addEventListener("click", movieClicked);
+  document.querySelector(".grid article:last-child img").addEventListener("click", movieClicked);
   document.querySelector(".grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
   document.querySelector(".grid article:last-child #btn-update").addEventListener("click", updateClicked);
 
-  function postClicked() {
-    document.querySelector("#dialog-title").textContent = `${postObject.title}`;
-    document.querySelector("#dialog-id").textContent = `${postObject.id}`;
-    document.querySelector("#dialog-img").src = `${postObject.posterUrl}`;
+  function movieClicked() {
+    document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
+    document.querySelector("#dialog-id").textContent = `${movieObject.id}`;
+    document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
 
-    document.querySelector("#dialog-post").showModal();
+    document.querySelector("#dialog-movie").showModal();
 
     document.querySelector("#btn-close").addEventListener("click", dialogClose);
   }
 
   function deleteClicked() {
-    document.querySelector("#dialog-delete-post-title").textContent = postObject.title;
-    document.querySelector("#form-delete-post").setAttribute("data-id", postObject.id);
-    document.querySelector("#dialog-delete-post").showModal();
+    document.querySelector("#dialog-delete-movie-title").textContent = movieObject.title;
+    document.querySelector("#form-delete-movie").setAttribute("data-id", movieObject.id);
+    document.querySelector("#dialog-delete-movie").showModal();
   }
 
   function updateClicked() {
-    const updateForm = document.querySelector("#form-update-post");
-    updateForm.title.value = postObject.title;
-    updateForm.body.value = postObject.body;
-    updateForm.image.value = postObject.image;
-    updateForm.setAttribute("data-id", postObject.id);
-    document.querySelector("#dialog-update-post").showModal();
+    const updateForm = document.querySelector("#form-update-movie");
+    updateForm.title.value = movieObject.title;
+    updateForm.body.value = movieObject.body;
+    updateForm.image.value = movieObject.image;
+    updateForm.setAttribute("data-id", movieObject.id);
+    document.querySelector("#dialog-update-movie").showModal();
     // to do
   }
 }
 
-function updatePostClicked(event) {
+function updateMovieClicked(event) {
   event.preventDefault();
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
   const image = form.image.value;
   const id = form.getAttribute("data-id");
-  console.log("Update Post clciked!", id);
-  updatePost(id, title, body, image);
-  document.querySelector("#dialog-update-post").close();
+  console.log("Update  clicked!", id);
+  updateMovie(id, title, body, image);
+  document.querySelector("#dialog-update-movie").close();
 }
 
-async function updatePost(id, title, body, image) {
-  // create object with the updated post information
-  const postToUpdate = { title, body, image };
-  const json = JSON.stringify(postToUpdate);
+async function updateMovie(id, title, body, image) {
+  // create object with the updated movie information
+  const movieToUpdate = { title, body, image };
+  const json = JSON.stringify(movieToUpdate);
 
   const response = await fetch(`${endPoint}/movies/${id}.json`, {
     method: "PUT",
@@ -118,62 +118,62 @@ async function updatePost(id, title, body, image) {
 
   // Check if response is ok - if the response is successful
   if (response.ok) {
-    // Update the post grid to display all posts and the new post
-    updatePostsGrid();
+    // Update the movie grid to display all movies and the new movie
+    updateMoviesGrid();
   }
 }
 
-function showCreatePostDialog() {
-  document.querySelector("#dialog-create-post").showModal();
+function showCreateMovieDialog() {
+  document.querySelector("#dialog-create-movie").showModal();
 }
 
-async function createPost(title, body, image) {
-  const newPost = { title: title, body: body, image: image };
-  const json = JSON.stringify(newPost);
+async function createMovie(title, body, image) {
+  const newMovie = { title: title, body: body, image: image };
+  const json = JSON.stringify(newMovie);
 
   const response = await fetch(`${endPoint}/movies.json`, {
     method: "POST",
     body: json,
   });
   if (response.ok) {
-    console.log("New post succesfully added to Firebase 🔥");
-    updatePostsGrid();
+    console.log("New movie succesfully added to Firebase 🔥");
+    updateMoviesGrid();
   }
 }
 
-function createPostClicked(event) {
+function createMovieClicked(event) {
   event.preventDefault();
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
   const image = form.image.value;
 
-  createPost(title, body, image);
+  createMovie(title, body, image);
   form.reset();
-  document.querySelector("#dialog-create-post").close();
+  document.querySelector("#dialog-create-movie").close();
 }
 
 function dialogClose() {
-  document.querySelector("#dialog-post").close();
-  document.querySelector("#dialog-delete-post").close();
+  document.querySelector("#dialog-movie").close();
+  document.querySelector("#dialog-delete-movie").close();
 }
 
-function deletePostClicked(event) {
+function deleteMovieClicked(event) {
   event.preventDefault();
   const form = event.target;
   const id = form.getAttribute("data-id");
-  console.log("Delete Post clicked!", id);
-  deletePost(id);
+  console.log("Delete  clicked!", id);
+  deleteMovie(id);
   form.reset();
-  document.querySelector("#dialog-delete-post").close();
+  document.querySelector("#dialog-delete-movie").close();
 }
 
-async function deletePost(id) {
+async function deleteMovie(id) {
   const response = await fetch(`${endPoint}/movies/${id}.json`, {
     method: "DELETE",
   });
   if (response.ok) {
-    updatePostsGrid();
+    updateMoviesGrid();
   }
 }
 
