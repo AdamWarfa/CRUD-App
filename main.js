@@ -12,7 +12,7 @@ function initApp() {
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
-  
+
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
@@ -52,8 +52,8 @@ function showMovies(listOfMovies) {
 
 function showMovie(movieObject) {
   let genreString = movieObject.genres.toString();
-  let genreFirst = genreString.split(",")[0].trim();
-  let genreSecond = genreString.split(",")[1].trim();
+  let genreFirst = genreString.split(",")[0];
+  let genreSecond = genreString.split(",")[1];
   console.log(genreSecond);
 
   document.querySelector(".grid").insertAdjacentHTML(
