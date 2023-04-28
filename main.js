@@ -72,6 +72,9 @@ function showMovie(movieObject) {
   document.querySelector(".grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
   document.querySelector(".grid article:last-child #btn-update").addEventListener("click", updateClicked);
 
+  document.querySelector(".btn-cancel").addEventListener("click", dialogClose);
+  document.querySelector("#btn-cancel-update-movie").addEventListener("click", dialogClose);
+
   function movieClicked() {
     document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
     document.querySelector("#dialog-id").textContent = `${movieObject.id}`;
@@ -163,6 +166,7 @@ function createMovieClicked(event) {
 function dialogClose() {
   document.querySelector("#dialog-movie").close();
   document.querySelector("#dialog-delete-movie").close();
+  document.querySelector("#dialog-update-movie").close();
 }
 
 function deleteMovieClicked(event) {
