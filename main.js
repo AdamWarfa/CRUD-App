@@ -2,7 +2,7 @@
 window.addEventListener("load", initApp);
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let movies = [];
+let movies;
 
 function initApp() {
   updateMoviesGrid();
@@ -25,12 +25,12 @@ async function updateMoviesGrid() {
 async function getMovies() {
   const response = await fetch(`${endPoint}/movies.json`);
   const data = await response.json();
-  const movies = prepareMovieData(data);
+  const movies = preparedMovieData(data);
 
   return movies;
 }
 
-function prepareMovieData(dataObject) {
+function preparedMovieData(dataObject) {
   const movieArray = [];
   for (const key in dataObject) {
     const movie = dataObject[key];
@@ -112,7 +112,6 @@ function showMovie(movieObject) {
     // to do
   }
 
-  function getGenres() {}
 }
 
 function updateMovieClicked(event) {
