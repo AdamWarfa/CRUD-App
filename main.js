@@ -52,7 +52,7 @@ function showMovie(movieObject) {
 
 <article class="list-entry">
 <h2 id="list-id">${movieObject.id}</h2>
-    <img id="list-image" src = "${movieObject.movieUrl}"/>
+    <img id="list-image" src = "${movieObject.posterUrl}"/>
     <h2 id="list-name">${movieObject.title}</h2>
     <p id="list-description">${movieObject.plot}</p>
     <button id="btn-update">UPDATE</button>
@@ -70,7 +70,7 @@ function showMovie(movieObject) {
   function movieClicked() {
     document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
     document.querySelector("#dialog-id").textContent = `${movieObject.id}`;
-    document.querySelector("#dialog-img").src = `${movieObject.movieUrl}`;
+    document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
 
     document.querySelector("#dialog-movie").showModal();
 
