@@ -46,15 +46,20 @@ function showMovies(listOfMovies) {
 }
 
 function showMovie(movieObject) {
+  let genreString = movieObject.genres.toString();
+  let genreFirst = genreString.split(",")[0].trim();
+  let genreSecond = genreString.split(",")[1].trim();
+  console.log(genreSecond);
+
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
     /*html*/ `
 
 <article class="list-entry">
-<h2 id="list-id">${movieObject.id}</h2>
+<h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
-    <h2 id="list-name">${movieObject.title}</h2>
-    <p id="list-description">${movieObject.plot}</p>
+    <p id="list-director">${movieObject.director}</p>
+    <p id="list-genre">${genreFirst} & ${genreSecond}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
@@ -92,6 +97,8 @@ function showMovie(movieObject) {
     document.querySelector("#dialog-update-movie").showModal();
     // to do
   }
+
+  function getGenres() {}
 }
 
 function updateMovieClicked(event) {
