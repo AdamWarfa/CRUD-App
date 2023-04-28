@@ -106,8 +106,7 @@ function showMovie(movieObject) {
     // to do
   }
 
-  function getGenres() {}
-}
+
 
 function updateMovieClicked(event) {
   event.preventDefault();
