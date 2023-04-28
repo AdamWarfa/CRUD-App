@@ -12,7 +12,7 @@ function initApp() {
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
-  
+
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
@@ -207,7 +207,7 @@ function searchMovies(searchValue) {
     return title.includes(searchValue);
   }
 
-  return results;}
+  return results;
 }
 
 // function parseJSONString(jsonString) {
