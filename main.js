@@ -2,6 +2,8 @@
 window.addEventListener("load", initApp);
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let movies = [];
+
 function initApp() {
   updateMoviesGrid();
   // const movieobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
@@ -10,6 +12,9 @@ function initApp() {
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
+  
+  document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
+  document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
 
 async function updateMoviesGrid() {
@@ -188,6 +193,24 @@ async function deleteMovie(id) {
   }
 }
 
+function inputSearchChanged(event) {
+  const value = event.target.value;
+  const moviesToShow = searchMovies(value);
+  showMovie(moviesToShow);
+}
+
+function searchMovies(searchValue) {
+  searchValue = searchValue.toLowerCase();
+
+  const results = movies.filter(checkTitle);
+
+  function checkTitle(movie) {
+    const title = movie.title.toLowerCase();
+    return title.includes(searchValue);
+  }
+
+  return results;
+}
 // function parseJSONString(jsonString) {
 //   const parsed = JSON.parse(jsonString);
 //   console.log(parsed);
