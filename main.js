@@ -111,8 +111,7 @@ function showMovie(movieObject) {
     document.querySelector("#dialog-update-movie").showModal();
     // to do
   }
-
-
+}
 
 function updateMovieClicked(event) {
   event.preventDefault();
@@ -216,6 +215,7 @@ function searchMovies(searchValue) {
 
   return results;
 }
+
 // function parseJSONString(jsonString) {
 //   const parsed = JSON.parse(jsonString);
 //   console.log(parsed);
