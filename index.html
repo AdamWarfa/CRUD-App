@@ -11,41 +11,41 @@
     <title>Document</title>
   </head>
   <body>
-    <dialog id="dialog-create-post">
-      <h2>Create new post</h2>
-      <form id="form-create-post">
+    <dialog id="dialog-create-movie">
+      <h2>Create new movie</h2>
+      <form id="form-create-movie">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" placeholder="Type a new title" />
         <label for="body">Body:</label>
-        <input type="text" id="body" name="body" placeholder="Type the content of your new post" />
+        <input type="text" id="body" name="body" placeholder="Type the content of your new movie" />
         <label for="image">Image:</label>
         <input type="url" id="image" name="image" placeholder="Paste an image URL" />
-        <button>Create Post</button>
+        <button>Create Movie</button>
       </form>
     </dialog>
-    <dialog id="dialog-update-post">
-      <form id="form-update-post">
+    <dialog id="dialog-update-movie">
+      <form id="form-update-movie">
         <h2>Do you want to update</h2>
-        <p id="dialog-update-post-title"></p>
+        <p id="dialog-update-movie-title"></p>
         <label for="title-update">Title:</label>
         <input type="text" id="title-update" name="title" placeholder="Update title" />
         <label for="body-update">Body:</label>
-        <input type="text" id="body-update" name="body" placeholder="Update the content of your new post" />
+        <input type="text" id="body-update" name="body" placeholder="Update the content of your new movie" />
         <label for="image-updae">Image:</label>
         <input type="url" id="image-update" name="image" placeholder="Update image URL" />
-        <button id="btn-confirm-update-post">Update post</button>
-        <button id="btn-cancel-update-post">Cancel</button>
+        <button id="btn-confirm-update-movie">Update movie</button>
+        <button id="btn-cancel-update-movie">Cancel</button>
       </form>
     </dialog>
-    <dialog id="dialog-delete-post">
-      <h2>Do you want to delete post?</h2>
-      <p id="dialog-delete-post-title">Title of post</p>
-      <form method="dialog" id="form-delete-post">
+    <dialog id="dialog-delete-movie">
+      <h2>Do you want to delete movie?</h2>
+      <p id="dialog-delete-movie-title">Title of movie</p>
+      <form method="dialog" id="form-delete-movie">
         <button type="button" class="btn-cancel" onclick="dialogClose()">No</button>
         <button>Yes</button>
       </form>
     </dialog>
-    <dialog id="dialog-post">
+    <dialog id="dialog-movie">
       <div id="dialog-content">
         <h2 id="dialog-title">title</h2>
         <h3 id="dialog-id">id</h3>
@@ -53,7 +53,7 @@
         <button id="btn-close">CLOSE</button>
       </div>
     </dialog>
-    <button id="btn-create-post">CREATE POST</button>
+    <button id="btn-create-movie">CREATE POST</button>
     <section class="grid"></section>
     <script src="main.js"></script>
   </body>
