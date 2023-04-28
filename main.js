@@ -1,24 +1,15 @@
 "use strict";
 window.addEventListener("load", initApp);
-const endPoint =
-  "https://first-base-5d130-default-rtdb.europe-west1.firebasedatabase.app";
+const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function initApp() {
   updatePostsGrid();
   // const postobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
   // console.log(postobject);
-  document
-    .querySelector("#form-create-post")
-    .addEventListener("submit", createPostClicked);
-  document
-    .querySelector("#form-update-post")
-    .addEventListener("submit", updatePostClicked);
-  document
-    .querySelector("#form-delete-post")
-    .addEventListener("submit", deletePostClicked);
-  document
-    .querySelector("#btn-create-post")
-    .addEventListener("click", showCreatePostDialog);
+  document.querySelector("#form-create-post").addEventListener("submit", createPostClicked);
+  document.querySelector("#form-update-post").addEventListener("submit", updatePostClicked);
+  document.querySelector("#form-delete-post").addEventListener("submit", deletePostClicked);
+  document.querySelector("#btn-create-post").addEventListener("click", showCreatePostDialog);
 }
 
 async function updatePostsGrid() {
@@ -27,7 +18,7 @@ async function updatePostsGrid() {
 }
 
 async function getPosts() {
-  const response = await fetch(`${endPoint}/posts.json`);
+  const response = await fetch(`${endPoint}/movies.json`);
   const data = await response.json();
   const posts = preparePostData(data);
 
@@ -61,9 +52,9 @@ function showPost(postObject) {
 
 <article class="list-entry">
 <h2 id="list-id">${postObject.id}</h2>
-    <img id="list-image" src = "${postObject.image}"/>
+    <img id="list-image" src = "${postObject.posterUrl}"/>
     <h2 id="list-name">${postObject.title}</h2>
-    <p id="list-description">${postObject.id}</p>
+    <p id="list-description">${postObject.plot}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
@@ -72,20 +63,14 @@ function showPost(postObject) {
   );
 
   // document.querySelector(".grid article:last-child").addEventListener("click", postClicked);
-  document
-    .querySelector(".grid article:last-child img")
-    .addEventListener("click", postClicked);
-  document
-    .querySelector(".grid article:last-child #btn-delete")
-    .addEventListener("click", deleteClicked);
-  document
-    .querySelector(".grid article:last-child #btn-update")
-    .addEventListener("click", updateClicked);
+  document.querySelector(".grid article:last-child img").addEventListener("click", postClicked);
+  document.querySelector(".grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
+  document.querySelector(".grid article:last-child #btn-update").addEventListener("click", updateClicked);
 
   function postClicked() {
     document.querySelector("#dialog-title").textContent = `${postObject.title}`;
     document.querySelector("#dialog-id").textContent = `${postObject.id}`;
-    document.querySelector("#dialog-img").src = `${postObject.image}`;
+    document.querySelector("#dialog-img").src = `${postObject.posterUrl}`;
 
     document.querySelector("#dialog-post").showModal();
 
@@ -93,11 +78,8 @@ function showPost(postObject) {
   }
 
   function deleteClicked() {
-    document.querySelector("#dialog-delete-post-title").textContent =
-      postObject.title;
-    document
-      .querySelector("#form-delete-post")
-      .setAttribute("data-id", postObject.id);
+    document.querySelector("#dialog-delete-post-title").textContent = postObject.title;
+    document.querySelector("#form-delete-post").setAttribute("data-id", postObject.id);
     document.querySelector("#dialog-delete-post").showModal();
   }
 
@@ -129,7 +111,7 @@ async function updatePost(id, title, body, image) {
   const postToUpdate = { title, body, image };
   const json = JSON.stringify(postToUpdate);
 
-  const response = await fetch(`${endPoint}/posts/${id}.json`, {
+  const response = await fetch(`${endPoint}/movies/${id}.json`, {
     method: "PUT",
     body: json,
   });
@@ -149,7 +131,7 @@ async function createPost(title, body, image) {
   const newPost = { title: title, body: body, image: image };
   const json = JSON.stringify(newPost);
 
-  const response = await fetch(`${endPoint}/posts.json`, {
+  const response = await fetch(`${endPoint}/movies.json`, {
     method: "POST",
     body: json,
   });
@@ -187,7 +169,7 @@ function deletePostClicked(event) {
 }
 
 async function deletePost(id) {
-  const response = await fetch(`${endPoint}/posts/${id}.json`, {
+  const response = await fetch(`${endPoint}/movies/${id}.json`, {
     method: "DELETE",
   });
   if (response.ok) {
