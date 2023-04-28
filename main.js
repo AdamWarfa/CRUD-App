@@ -112,7 +112,7 @@ function showMovie(movieObject) {
     // to do
   }
 
-}
+
 
 function updateMovieClicked(event) {
   event.preventDefault();
