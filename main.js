@@ -34,6 +34,7 @@ function prepareMovieData(dataObject) {
   const movieArray = [];
   for (const key in dataObject) {
     const movie = dataObject[key];
+    console.log(movie);
     movie.id = key;
     console.log(movie);
     movieArray.push(movie);
@@ -51,10 +52,10 @@ function showMovies(listOfMovies) {
 }
 
 function showMovie(movieObject) {
+  console.log(movieObject);
   let genreString = movieObject.genres.toString();
-  let genreFirst = genreString.split(",")[0].trim();
-  let genreSecond = genreString.split(",")[1].trim();
-  console.log(genreSecond);
+  let genreFirst = genreString.split(",")[0];
+  let genreSecond = genreString.split(",")[1];
 
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
