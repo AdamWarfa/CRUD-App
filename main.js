@@ -56,6 +56,11 @@ function showMovie(movieObject) {
   let genreString = movieObject.genres.toString();
   let genreFirst = genreString.split(",")[0];
   let genreSecond = genreString.split(",")[1];
+  let movieGenre = `${genreFirst} & ${genreSecond}`;
+
+  if (genreSecond == undefined) {
+    movieGenre = `${genreFirst}`;
+  }
 
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
@@ -65,7 +70,7 @@ function showMovie(movieObject) {
 <h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
     <p id="list-director">${movieObject.director}</p>
-    <p id="list-genre">${genreFirst} & ${genreSecond}</p>
+    <p id="list-genre">${movieGenre}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
