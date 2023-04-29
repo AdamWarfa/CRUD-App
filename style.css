@@ -24,6 +24,35 @@ body {
   z-index: -1;
   position: fixed;
 }
+header {
+  position: relative;
+  height: 65px;
+  background: rgb(255, 223, 226);
+  background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
+}
+
+nav {
+  position: absolute;
+  left: 60vw;
+}
+#navbar li {
+  list-style-type: none;
+
+  display: inline;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: black;
+}
+
+#navbar a:hover {
+  text-decoration: none;
+  color: rgb(73, 73, 73);
+}
 
 .list-entry {
   width: 17vw;
