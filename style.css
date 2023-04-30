@@ -153,15 +153,19 @@ button:hover {
 }
 
 dialog {
-  width: 50%;
-  height: 80%;
-  border: 3px solid;
-  border-color: #121312;
-  -webkit-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  backdrop-filter: brightness(20%);
+  color: #000000;
+  font-size: 1vw;
+  border: 3px solid rgba(255, 255, 255, 0.072);
+  border-radius: 4%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  -moz-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  position: relative;
+  width: 40vw;
+  height: 40vw;
+  overflow: hidden;
 }
 
 dialog img {
