@@ -1,10 +1,12 @@
 "use strict";
 window.addEventListener("load", initApp);
 
+
 // Globale variabler
 
 // Firebase variabel
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
+
 // Tom variabel til vores film data
 let movies;
 
@@ -66,6 +68,18 @@ function showMovies(listOfMovies) {
       console.log(error);
     }
   }
+}
+
+function getGenre(movie) {
+  let genreString = movie.genres?.toString();
+  let genreFirst = genreString?.split(",")[0];
+  let genreSecond = genreString?.split(",")[1];
+  let movieGenre = `${genreFirst} & ${genreSecond}`;
+
+  if (genreSecond == undefined) {
+    movieGenre = `${genreFirst}`;
+  }
+  return movieGenre;
 }
 
 function showMovie(movieObject) {
