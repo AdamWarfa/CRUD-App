@@ -54,6 +54,7 @@ function showMovies(listOfMovies) {
 }
 
 function getGenre(movie) {
+  //?-(optional chaining) en teknik fundet på stack overflow som returnerer "undefined" hvis et objekt ikke opfylder datastrukturen istedet for give en fejl i konsollen.
   let genreString = movie.genres?.toString();
   let genreFirst = genreString?.split(",")[0];
   let genreSecond = genreString?.split(",")[1];
