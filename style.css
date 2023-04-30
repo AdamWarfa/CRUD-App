@@ -32,6 +32,13 @@ header {
   background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
 }
 
+#cmdb-logo {
+  position: absolute;
+  width: 200px;
+  top: 5px;
+  left: 20px;
+}
+
 nav {
   position: absolute;
   left: 60vw;
@@ -59,14 +66,14 @@ nav {
   position: absolute;
   background: #fff;
   height: 30px;
+  min-width: 100px;
   border-radius: 30px;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   transition: 0.5s;
-  left: 25%;
+  left: 250px;
   top: 8px;
   box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2), inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
 }
@@ -79,7 +86,7 @@ nav {
   background: transparent;
   border: none;
   outline: none;
-  width: 0px;
+  width: 80px;
   font-weight: 500;
   font-size: 16px;
   transition: 0.5s;
@@ -112,7 +119,7 @@ nav {
   -moz-box-shadow: 0px 0px 60px -17px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 60px -17px rgba(0, 0, 0, 0.75);
   z-index: 5;
-  transform: scale(110%);
+  transform: scale(105%);
   background: rgb(255, 255, 255);
   background: linear-gradient(42deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8239670868347339) 100%);
 }
@@ -129,26 +136,38 @@ nav {
 button {
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
+  border: 1px solid;
+  padding: 10px;
+  border-color: #0a0a0a;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.637);
+  backdrop-filter: blur(5px);
+  border: 1px solid;
+  padding: 10px;
+  border-color: #0a0a0a;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 dialog {
-  width: 50%;
-  height: 80%;
-  border: 3px solid;
-  border-color: #121312;
-  -webkit-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  backdrop-filter: brightness(20%);
+  color: #000000;
+  font-size: 1vw;
+  border: 3px solid rgba(255, 255, 255, 0.072);
+  border-radius: 4%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  -moz-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 0.89);
+  position: relative;
+  width: 40vw;
+  height: 40vw;
+  overflow: hidden;
 }
 
 dialog img {
   width: 50%;
-}
-
-button {
-  border: 3px solid;
-  border-color: #0a0a0a;
-  border-radius: 20px;
 }
