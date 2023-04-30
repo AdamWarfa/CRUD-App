@@ -133,8 +133,12 @@ function showMovie(movieObject) {
     const updateForm = document.querySelector("#form-update-movie");
 
     updateForm.title.value = movieObject.title;
-    updateForm.body.value = movieObject.body;
-    updateForm.image.value = movieObject.image;
+    updateForm.director.value = movieObject.director;
+    updateForm.year.value = movieObject.year;
+    updateForm.runtime.value = movieObject.runtime;
+    updateForm.plot.value = movieObject.plot;
+    updateForm.actors.value = movieObject.actors;
+    updateForm.image.value = movieObject.posterUrl;
     updateForm.setAttribute("data-id", movieObject.id);
 
     document.querySelector("#dialog-update-movie").showModal();
@@ -165,13 +169,17 @@ function updateMovieClicked(event) {
 
   const form = event.target;
   const title = form.title.value;
-  const body = form.body.value;
+  const director = form.director.value;
+  const year = form.year.value;
+  const runtime = form.runtime.value;
+  const plot = form.plot.value;
+  const actors = form.actors.value;
   const image = form.image.value;
   const id = form.getAttribute("data-id");
 
   console.log("Update  clicked!", id);
 
-  updateMovie(id, title, body, image);
+  updateMovie(id, title, director, year, runtime, plot, actors, image);
   document.querySelector("#dialog-update-movie").close();
 }
 
