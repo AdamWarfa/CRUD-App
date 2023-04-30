@@ -99,7 +99,7 @@ function showMovie(movieObject) {
   document.querySelector("#btn-cancel-update-movie").addEventListener("click", closeDialog);
 
   function movieClicked() {
-    // Viser titel, id og billede på film når filmen er blevet klikket på
+    // Viser titel, director, udgivelsesår, spilletid, genre(r), billede, plottet og hovedroller på film, når filmen er blevet klikket på
     document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
     document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
     document.querySelector("#dialog-year").textContent = `Release year: ${movieObject.year}`;

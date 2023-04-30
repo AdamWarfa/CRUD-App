@@ -1,19 +1,11 @@
+/* ========== BODY ========== */
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
 }
 
-.dim {
-  filter: brightness(30%);
-}
-
-#grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 100vw;
-  margin-left: 1.5vw;
-  margin-top: 2vw;
-}
+/* ========== BACKGROUND & BACKGROUND EFFECTS ========== */
 
 #background {
   background-image: url(assets/wallpaperflare.com_wallpaper.jpg);
@@ -24,6 +16,23 @@ body {
   z-index: -1;
   position: fixed;
 }
+
+.dim {
+  filter: brightness(30%);
+}
+
+/* ========== GRID ========== */
+
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100vw;
+  margin-left: 1.5vw;
+  margin-top: 2vw;
+}
+
+/* ========== HEADER ========== */
+
 header {
   position: relative;
   top: 0;
@@ -32,6 +41,8 @@ header {
   background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
 }
 
+/* ========== LOGO ========== */
+
 #cmdb-logo {
   position: absolute;
   width: 200px;
@@ -39,10 +50,13 @@ header {
   left: 20px;
 }
 
+/* ========== NAV ELEMENTS ========== */
+
 nav {
   position: absolute;
   left: 60vw;
 }
+
 #navbar li {
   list-style-type: none;
 
@@ -61,6 +75,8 @@ nav {
   text-decoration: none;
   color: rgb(73, 73, 73);
 }
+
+/* ========== SEARCH BAR ========== */
 
 .search-container {
   position: absolute;
@@ -96,6 +112,8 @@ nav {
   color: rgb(130, 72, 128);
 }
 
+/* ========== FILM KORT ========== */
+
 .list-entry {
   width: 17vw;
   height: 35vw;
@@ -123,15 +141,19 @@ nav {
   background: rgb(255, 255, 255);
   background: linear-gradient(42deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8239670868347339) 100%);
 }
+
 .list-entry img {
   width: 70%;
 
   border: 3px solid #131414;
 }
+
 .list-entry h2 {
   width: 90%;
   padding-left: 5%;
 }
+
+/* ========== BUTTONS ========== */
 
 button {
   background-color: rgba(255, 255, 255, 0.2);
@@ -151,6 +173,8 @@ button:hover {
   border-radius: 20px;
   cursor: pointer;
 }
+
+/* ========== DIALOG ========== */
 
 dialog {
   color: #000000;
