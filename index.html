@@ -16,7 +16,7 @@
       <img src="assets/cmdb.png" alt="" id="cmdb-logo" />
     </div>
     <div class="search-container">
-      <input type="text" id="input-search" name="search" placeholder="Search..." class="search-input" />
+      <input type="search" id="input-search" placeholder="Search by title" />
       <a href="#" class="search-btn">
         <i class="fas fa-search"></i>
       </a>
@@ -31,7 +31,7 @@
     </nav>
   </header>
   <body>
-    <div id="background" class="dim"></div>
+    <div id="background"></div>
     <dialog id="dialog-create-movie">
       <h2>Create new movie</h2>
       <form id="form-create-movie">
@@ -70,12 +70,16 @@
       <div id="dialog-content">
         <h2 id="dialog-title">title</h2>
         <h3 id="dialog-id">id</h3>
-        <img id="dialog-img" src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg" alt="" />
+        <img
+          id="dialog-img"
+          src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg"
+          alt=""
+        />
         <button id="btn-close">CLOSE</button>
       </div>
     </dialog>
     <button id="btn-create-movie">CREATE POST</button>
-    <section class="grid"></section>
+    <section id="grid"></section>
     <script src="main.js"></script>
   </body>
 </html>
