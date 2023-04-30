@@ -34,7 +34,7 @@ async function getMovies() {
   // Fetch JSON data fra vores database
   const response = await fetch(`${endPoint}/movies.json`);
   const data = await response.json();
-  const movies = preparedMovieData(data);
+  const movies = prepareMovieData(data);
 
   return movies;
 }
@@ -253,14 +253,14 @@ function inputSearchChanged(event) {
 }
 
 function searchMovies(searchValue) {
-    if (movies) {
-      const filteredMovies = movies.filter((movie) => {
-        // filter movies based on search term
-        return movie.title.toLowerCase().includes(searchValue.toLowerCase());
-      });
-      // display filtered movies
-      showMovies(filteredMovies);
-    }
+  if (movies) {
+    const filteredMovies = movies.filter((movie) => {
+      // filter movies based on search term
+      return movie.title.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    // display filtered movies
+    showMovies(filteredMovies);
+  }
   // searchValue = searchValue.toLowerCase();
 
   // const results = movies.filter(checkTitle);
