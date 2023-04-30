@@ -219,6 +219,7 @@ async function createMovie(title, body, image) {
 // Create movie click event
 function createMovieClicked(event) {
   event.preventDefault();
+
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
@@ -230,6 +231,7 @@ function createMovieClicked(event) {
 }
 
 function closeDialog() {
+  // Lukker dialog, fjerner formørkelse af baggrund
   document.querySelector("#dialog-movie").close();
   document.querySelector("#dialog-delete-movie").close();
   document.querySelector("#dialog-update-movie").close();
@@ -240,11 +242,14 @@ function closeDialog() {
 
 function deleteMovieClicked(event) {
   event.preventDefault();
+
   const form = event.target;
   const id = form.getAttribute("data-id");
   console.log("Delete  clicked!", id);
+
   deleteMovie(id);
   form.reset();
+
   document.querySelector("#dialog-delete-movie").close();
 }
 
