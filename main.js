@@ -6,7 +6,7 @@ window.addEventListener("load", initApp);
 // Firebase variabel
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// Tom variabel til vores film data
+// Tom variabel til vores filmdata
 let movies;
 
 // Start app funktion
