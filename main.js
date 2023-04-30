@@ -95,7 +95,8 @@ function showMovie(movieObject) {
 <article class="list-entry">
 <h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
-    <p id="list-director">${movieObject.director}</p>
+    <p id="list-runtime" >Runtime: ${movieObject.runtime} minutes</p>
+    <p id="list-director">${movieObject.director} (${movieObject.year})</p>
     <p id="list-genre">${movieGenre}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
