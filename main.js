@@ -54,7 +54,7 @@ function prepareMovieData(dataObject) {
 }
 
 function showMovies(listOfMovies) {
-  document.querySelector(".grid").innerHTML = "";
+  document.querySelector("#grid").innerHTML = "";
 
   /* 
   Når man laver et nyt "create post", giver den fejlbesked i konsollen, da objektets datastruktur ikke stemmer overens med databasen.
@@ -85,7 +85,7 @@ function getGenre(movie) {
 function showMovie(movieObject) {
   let movieGenre = getGenre(movieObject);
 
-  document.querySelector(".grid").insertAdjacentHTML(
+  document.querySelector("#grid").insertAdjacentHTML(
     "beforeend",
     /*html*/ `
 
@@ -101,10 +101,10 @@ function showMovie(movieObject) {
 `
   );
 
-  // document.querySelector(".grid article:last-child").addEventListener("click", movieClicked);
-  document.querySelector(".grid article:last-child img").addEventListener("click", movieClicked);
-  document.querySelector(".grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector(".grid article:last-child #btn-update").addEventListener("click", updateClicked);
+  // document.querySelector("#grid article:last-child").addEventListener("click", movieClicked);
+  document.querySelector("#grid article:last-child img").addEventListener("click", movieClicked);
+  document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
+  document.querySelector("#grid article:last-child #btn-update").addEventListener("click", updateClicked);
 
   document.querySelector(".btn-cancel").addEventListener("click", dialogClose);
   document.querySelector("#btn-cancel-update-movie").addEventListener("click", dialogClose);
@@ -115,6 +115,9 @@ function showMovie(movieObject) {
     document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
 
     document.querySelector("#dialog-movie").showModal();
+    document.querySelector("#background").classList.add("dim");
+    document.querySelector("header").classList.add("dim");
+    document.querySelector("#grid").classList.add("dim");
 
     document.querySelector("#btn-close").addEventListener("click", dialogClose);
   }
@@ -123,6 +126,9 @@ function showMovie(movieObject) {
     document.querySelector("#dialog-delete-movie-title").textContent = movieObject.title;
     document.querySelector("#form-delete-movie").setAttribute("data-id", movieObject.id);
     document.querySelector("#dialog-delete-movie").showModal();
+    document.querySelector("#background").classList.add("dim");
+    document.querySelector("header").classList.add("dim");
+    document.querySelector("#grid").classList.add("dim");
   }
 
   function updateClicked() {
@@ -132,6 +138,9 @@ function showMovie(movieObject) {
     updateForm.image.value = movieObject.image;
     updateForm.setAttribute("data-id", movieObject.id);
     document.querySelector("#dialog-update-movie").showModal();
+    document.querySelector("#background").classList.add("dim");
+    document.querySelector("header").classList.add("dim");
+    document.querySelector("#grid").classList.add("dim");
   }
 }
 
@@ -178,6 +187,9 @@ async function updateMovie(id, title, body, image) {
 
 function showCreateMovieDialog() {
   document.querySelector("#dialog-create-movie").showModal();
+  document.querySelector("#background").classList.add("dim");
+  document.querySelector("header").classList.add("dim");
+  document.querySelector("#grid").classList.add("dim");
 }
 
 async function createMovie(title, body, image) {
@@ -210,6 +222,9 @@ function dialogClose() {
   document.querySelector("#dialog-movie").close();
   document.querySelector("#dialog-delete-movie").close();
   document.querySelector("#dialog-update-movie").close();
+  document.querySelector("#background").classList.remove("dim");
+  document.querySelector("header").classList.remove("dim");
+  document.querySelector("#grid").classList.remove("dim");
 }
 
 function deleteMovieClicked(event) {
