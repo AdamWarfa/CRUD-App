@@ -2,7 +2,7 @@
 window.addEventListener("load", initApp);
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let movies = [];
+let movies;
 
 function initApp() {
   updateMoviesGrid();
@@ -34,9 +34,7 @@ function prepareMovieData(dataObject) {
   const movieArray = [];
   for (const key in dataObject) {
     const movie = dataObject[key];
-    console.log(movie);
     movie.id = key;
-    console.log(movie);
     movieArray.push(movie);
   }
   console.log(movieArray);
@@ -47,20 +45,28 @@ function showMovies(listOfMovies) {
   document.querySelector(".grid").innerHTML = "";
 
   for (const movie of listOfMovies) {
-    showMovie(movie);
+    try {
+      showMovie(movie);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
-function showMovie(movieObject) {
-  console.log(movieObject);
-  let genreString = movieObject.genres.toString();
-  let genreFirst = genreString.split(",")[0];
-  let genreSecond = genreString.split(",")[1];
+function getGenre(movie) {
+  let genreString = movie.genres?.toString();
+  let genreFirst = genreString?.split(",")[0];
+  let genreSecond = genreString?.split(",")[1];
   let movieGenre = `${genreFirst} & ${genreSecond}`;
 
   if (genreSecond == undefined) {
     movieGenre = `${genreFirst}`;
   }
+  return movieGenre;
+}
+
+function showMovie(movieObject) {
+  let movieGenre = getGenre(movieObject);
 
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
@@ -199,6 +205,7 @@ async function deleteMovie(id) {
 function inputSearchChanged(event) {
   const value = event.target.value;
   const moviesToShow = searchMovies(value);
+  console.log(moviesToShow);
   showMovie(moviesToShow);
 }
 
@@ -209,6 +216,7 @@ function searchMovies(searchValue) {
 
   function checkTitle(movie) {
     const title = movie.title.toLowerCase();
+    console.log(title);
     return title.includes(searchValue);
   }
 

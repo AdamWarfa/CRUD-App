@@ -8,10 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-    <title>CRUD-app</title>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+    <title>CRUD-App</title>
   </head>
   <header>
-    <input type="search" id="input-search" placeholder="Search by title" />
+    <div class="search-container">
+      <input type="text" id="input-search" name="search" placeholder="Search..." class="search-input" />
+      <a href="#" class="search-btn">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
     <nav id="navbar">
       <ul>
         <li><a href="">Genres</a></li>
