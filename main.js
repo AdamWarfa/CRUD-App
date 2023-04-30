@@ -68,22 +68,6 @@ function showMovies(listOfMovies) {
   }
 }
 
-function getGenre(movie) {
-  // ? - (optional chaining) en teknik fundet på StackOverflow som returnerer "undefined", hvis et objekt ikke opfylder datastrukturen, i stedet for at give en fejl i konsollen.
-  let genreString = movie.genres?.toString();
-  let genreFirst = genreString?.split(",")[0];
-  let genreSecond = genreString?.split(",")[1];
-  // Vis kun et maksimum af 2 genrer på frontsiden af CRUD app.
-  let movieGenre = `${genreFirst} & ${genreSecond}`;
-
-  // Nogle film har kun 1 genre. Hvis genre nummer er 1< og giver undefined, vis kun første genre.
-  if (genreSecond == undefined) {
-    movieGenre = `${genreFirst}`;
-  }
-
-  return movieGenre;
-}
-
 // Funktion til DOM-manipulation
 function showMovie(movieObject) {
   let movieGenre = getGenre(movieObject);
@@ -104,25 +88,29 @@ function showMovie(movieObject) {
 `
   );
 
-  // document.querySelector("#grid article:last-child").addEventListener("click", movieClicked);
+  // Click events til at åbne, slette og opdatere film
   document.querySelector("#grid article:last-child img").addEventListener("click", movieClicked);
   document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
   document.querySelector("#grid article:last-child #btn-update").addEventListener("click", updateClicked);
 
-  document.querySelector(".btn-cancel").addEventListener("click", dialogClose);
-  document.querySelector("#btn-cancel-update-movie").addEventListener("click", dialogClose);
+  // Cancel knapper der kan lukke et åbnet film dialog
+  document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
+  document.querySelector("#btn-cancel-update-movie").addEventListener("click", closeDialog);
 
   function movieClicked() {
+    // Viser titel, id og billede på film når filmen er blevet klikket på
     document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
     document.querySelector("#dialog-id").textContent = `${movieObject.id}`;
     document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
-
     document.querySelector("#dialog-movie").showModal();
+
+    // Gør baggrunden mørkere, så dialogen fremstår mere klart
     document.querySelector("#background").classList.add("dim");
     document.querySelector("header").classList.add("dim");
     document.querySelector("#grid").classList.add("dim");
 
-    document.querySelector("#btn-close").addEventListener("click", dialogClose);
+    // Lukker dialog
+    document.querySelector("#btn-close").addEventListener("click", closeDialog);
   }
 
   function deleteClicked() {
@@ -136,10 +124,12 @@ function showMovie(movieObject) {
 
   function updateClicked() {
     const updateForm = document.querySelector("#form-update-movie");
+
     updateForm.title.value = movieObject.title;
     updateForm.body.value = movieObject.body;
     updateForm.image.value = movieObject.image;
     updateForm.setAttribute("data-id", movieObject.id);
+
     document.querySelector("#dialog-update-movie").showModal();
     document.querySelector("#background").classList.add("dim");
     document.querySelector("header").classList.add("dim");
@@ -148,25 +138,32 @@ function showMovie(movieObject) {
 }
 
 function getGenre(movie) {
+  // ? - (optional chaining) en teknik fundet på StackOverflow som returnerer "undefined", hvis et objekt ikke opfylder datastrukturen, i stedet for at give en fejl i konsollen.
   let genreString = movie.genres?.toString();
   let genreFirst = genreString?.split(",")[0];
   let genreSecond = genreString?.split(",")[1];
+  // Vis kun et maksimum af 2 genrer på frontsiden af CRUD app.
   let movieGenre = `${genreFirst} & ${genreSecond}`;
 
+  // Nogle film har kun 1 genre. Hvis genre nummer er 1< og giver undefined, vis kun første genre.
   if (genreSecond == undefined) {
     movieGenre = `${genreFirst}`;
   }
+
   return movieGenre;
 }
 
 function updateMovieClicked(event) {
   event.preventDefault();
+
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
   const image = form.image.value;
   const id = form.getAttribute("data-id");
+
   console.log("Update  clicked!", id);
+
   updateMovie(id, title, body, image);
   document.querySelector("#dialog-update-movie").close();
 }
@@ -195,6 +192,7 @@ function showCreateMovieDialog() {
   document.querySelector("#grid").classList.add("dim");
 }
 
+// Funktion der laver nyt objekt med filminformation
 async function createMovie(title, body, image) {
   const newMovie = { title: title, body: body, image: image };
   const json = JSON.stringify(newMovie);
@@ -203,12 +201,15 @@ async function createMovie(title, body, image) {
     method: "POST",
     body: json,
   });
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
     console.log("New movie succesfully added to Firebase 🔥");
+    // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
   }
 }
 
+// Create movie click event
 function createMovieClicked(event) {
   event.preventDefault();
   const form = event.target;
@@ -221,7 +222,7 @@ function createMovieClicked(event) {
   document.querySelector("#dialog-create-movie").close();
 }
 
-function dialogClose() {
+function closeDialog() {
   document.querySelector("#dialog-movie").close();
   document.querySelector("#dialog-delete-movie").close();
   document.querySelector("#dialog-update-movie").close();
