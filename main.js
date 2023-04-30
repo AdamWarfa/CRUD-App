@@ -74,14 +74,18 @@ function getGenre(movie) {
   let genreString = movie.genres?.toString();
   let genreFirst = genreString?.split(",")[0];
   let genreSecond = genreString?.split(",")[1];
+  // Vis kun et maksimum af 2 genrer på frontsiden af CRUD app.
   let movieGenre = `${genreFirst} & ${genreSecond}`;
 
+  // Nogle film har kun 1 genre. Hvis genre nummer er 1< og giver undefined, vis kun første genre.
   if (genreSecond == undefined) {
     movieGenre = `${genreFirst}`;
   }
+
   return movieGenre;
 }
 
+// Funktion til DOM-manipulation
 function showMovie(movieObject) {
   let movieGenre = getGenre(movieObject);
 
@@ -160,7 +164,7 @@ function updateMovieClicked(event) {
 }
 
 async function updateMovie(id, title, body, image) {
-  // create object with the updated movie information
+  // Laver objekt med opdateret filminformation
   const movieToUpdate = { title, body, image };
   const json = JSON.stringify(movieToUpdate);
 
@@ -169,9 +173,9 @@ async function updateMovie(id, title, body, image) {
     body: json,
   });
 
-  // Check if response is ok - if the response is successful
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
-    // Update the movie grid to display all movies and the new movie
+    // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
   }
 }
@@ -251,11 +255,6 @@ function searchMovies(searchValue) {
 
   return results;
 }
-
-// function parseJSONString(jsonString) {
-//   const parsed = JSON.parse(jsonString);
-//   console.log(parsed);
-// }
 
 //to do:
 /*
