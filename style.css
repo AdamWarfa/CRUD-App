@@ -24,6 +24,70 @@ body {
   z-index: -1;
   position: fixed;
 }
+header {
+  position: relative;
+  top: 0;
+  height: 65px;
+  background: rgb(255, 223, 226);
+  background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
+}
+
+nav {
+  position: absolute;
+  left: 60vw;
+}
+#navbar li {
+  list-style-type: none;
+
+  display: inline;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: black;
+}
+
+#navbar a:hover {
+  text-decoration: none;
+  color: rgb(73, 73, 73);
+}
+
+.search-container {
+  position: absolute;
+  background: #fff;
+  height: 30px;
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+  left: 25%;
+  top: 8px;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2), inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search-container:hover > .search-input {
+  width: 400px;
+}
+
+.search-container .search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 0px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+.search-container .search-btn .fas {
+  color: rgb(130, 72, 128);
+}
 
 .list-entry {
   width: 17vw;

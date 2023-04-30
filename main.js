@@ -35,7 +35,6 @@ function preparedMovieData(dataObject) {
   for (const key in dataObject) {
     const movie = dataObject[key];
     movie.id = key;
-    console.log(movie);
     movieArray.push(movie);
   }
   console.log(movieArray);
@@ -46,15 +45,28 @@ function showMovies(listOfMovies) {
   document.querySelector(".grid").innerHTML = "";
 
   for (const movie of listOfMovies) {
-    showMovie(movie);
+    try {
+      showMovie(movie);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
+function getGenre(movie) {
+  let genreString = movie.genres?.toString();
+  let genreFirst = genreString?.split(",")[0];
+  let genreSecond = genreString?.split(",")[1];
+  let movieGenre = `${genreFirst} & ${genreSecond}`;
+
+  if (genreSecond == undefined) {
+    movieGenre = `${genreFirst}`;
+  }
+  return movieGenre;
+}
+
 function showMovie(movieObject) {
-  let genreString = movieObject.genres.toString();
-  let genreFirst = genreString.split(",")[0].trim();
-  let genreSecond = genreString.split(",")[1].trim();
-  console.log(genreSecond);
+  let movieGenre = getGenre(movieObject);
 
   document.querySelector(".grid").insertAdjacentHTML(
     "beforeend",
@@ -64,7 +76,7 @@ function showMovie(movieObject) {
 <h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
     <p id="list-director">${movieObject.director}</p>
-    <p id="list-genre">${genreFirst} & ${genreSecond}</p>
+    <p id="list-genre">${movieGenre}</p>
     <button id="btn-update">UPDATE</button>
         <button id="btn-delete">DELETE</button>
 
@@ -103,7 +115,6 @@ function showMovie(movieObject) {
     updateForm.image.value = movieObject.image;
     updateForm.setAttribute("data-id", movieObject.id);
     document.querySelector("#dialog-update-movie").showModal();
-    // to do
   }
 }
 
@@ -194,6 +205,7 @@ async function deleteMovie(id) {
 function inputSearchChanged(event) {
   const value = event.target.value;
   const moviesToShow = searchMovies(value);
+  console.log(moviesToShow);
   showMovie(moviesToShow);
 }
 
@@ -204,6 +216,7 @@ function searchMovies(searchValue) {
 
   function checkTitle(movie) {
     const title = movie.title.toLowerCase();
+    console.log(title);
     return title.includes(searchValue);
   }
 
@@ -214,3 +227,29 @@ function searchMovies(searchValue) {
 //   const parsed = JSON.parse(jsonString);
 //   console.log(parsed);
 // }
+
+//to do:
+/*
+Teknologier og programmeringskoncepter
+HTML, CSS og JavaScript - du må ikke anvende libraries eller frameworks, heller ikke CSS stylesheets, som du ikke selv har skrevet. Du må gerne lade dig inspirere af fx csslayout.io, w3schools, eksisterende GitHub Repositories - men lad være med at kopiere direkte.
+Events, DOM-manipulation, variabler, objekter, arrays, loops, funktioner med parametre og returværdier, events
+Anvendelse af et REST API og BaaS (backend as a service)
+Anvendelse af await, async, fetch og HTTP-metoderne GET, POST, PUT/PATCH og DELETE
+Formularer med typer, valideringen og restriktioner
+Fejlhåndtering i forbindelse med HTTP status-koder
+Submit-event(s)
+Array-metoder som fx .filter, .sort, .find
+Modules, import og export samt Separation of Concerns - din kode skal være opdelt i mindre specialiserede dele (funktioner og moduler) for at opnå god struktur.
+HTML-elementer som fx ul, ol, li, header, section, footer, form, label, button, input, og relaterede
+CSS Grid, CSS Flex og/eller HTML Table
+Git til samarbejde 
+
+Aflevering
+Som gruppe skal I aflevere en PDF med:
+
+Aktivitetsdiagrammer
+Et link til jeres kodebase på GitHub
+Et link til jeres kørende løsning på GitHub Pages
+Et screenshot af data fra jeres BaaS
+
+*/
