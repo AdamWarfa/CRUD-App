@@ -206,21 +206,29 @@ function inputSearchChanged(event) {
   const value = event.target.value;
   const moviesToShow = searchMovies(value);
   console.log(moviesToShow);
-  showMovie(moviesToShow);
+  showMovies(moviesToShow);
 }
 
 function searchMovies(searchValue) {
-  searchValue = searchValue.toLowerCase();
+    if (movies) {
+      const filteredMovies = movies.filter((movie) => {
+        // filter movies based on search term
+        return movie.title.toLowerCase().includes(searchValue.toLowerCase());
+      });
+      // display filtered movies
+      showMovies(filteredMovies);
+    }
+  // searchValue = searchValue.toLowerCase();
 
-  const results = movies.filter(checkTitle);
+  // const results = movies.filter(checkTitle);
 
-  function checkTitle(movie) {
-    const title = movie.title.toLowerCase();
-    console.log(title);
-    return title.includes(searchValue);
-  }
+  // function checkTitle(movie) {
+  //   const title = movie.title.toLowerCase();
+  //   console.log(title);
+  //   return title.includes(searchValue);
+  // }
 
-  return results;
+  // return results;
 }
 
 // function parseJSONString(jsonString) {
