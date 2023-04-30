@@ -1,13 +1,22 @@
 "use strict";
 window.addEventListener("load", initApp);
+
+
+// Globale variabler
+
+// Firebase variabel
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
+// Tom variabel til vores film data
 let movies;
 
+// Start app funktion
 function initApp() {
+  globalEventListeners();
   updateMoviesGrid();
-  // const movieobject = parseJSONString('{"title": “This is my awesome title”, "image": “https://share.cederdorff.com/images/petl.jpg" }');
-  // console.log(movieobject);
+}
+
+function globalEventListeners() {
   document.querySelector("#form-create-movie").addEventListener("submit", createMovieClicked);
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
@@ -23,6 +32,7 @@ async function updateMoviesGrid() {
 }
 
 async function getMovies() {
+  // Fetch JSON data fra vores database
   const response = await fetch(`${endPoint}/movies.json`);
   const data = await response.json();
   const movies = prepareMovieData(data);
@@ -30,8 +40,11 @@ async function getMovies() {
   return movies;
 }
 
+// Objekt med objekter, som vi laver til et array med objekter
 function prepareMovieData(dataObject) {
   const movieArray = [];
+
+  // for in som pusher fetchede JSON data ind i vores array
   for (const key in dataObject) {
     const movie = dataObject[key];
     movie.id = key;
@@ -44,6 +57,10 @@ function prepareMovieData(dataObject) {
 function showMovies(listOfMovies) {
   document.querySelector(".grid").innerHTML = "";
 
+  /* 
+  Når man laver et nyt "create post", giver den fejlbesked i konsollen, da objektets datastruktur ikke stemmer overens med databasen.
+  Derfor implementerede vi en try catch som gerne skulle fange fejlbeskederne.
+  */
   for (const movie of listOfMovies) {
     try {
       showMovie(movie);
@@ -117,6 +134,18 @@ function showMovie(movieObject) {
     updateForm.setAttribute("data-id", movieObject.id);
     document.querySelector("#dialog-update-movie").showModal();
   }
+}
+
+function getGenre(movie) {
+  let genreString = movie.genres?.toString();
+  let genreFirst = genreString?.split(",")[0];
+  let genreSecond = genreString?.split(",")[1];
+  let movieGenre = `${genreFirst} & ${genreSecond}`;
+
+  if (genreSecond == undefined) {
+    movieGenre = `${genreFirst}`;
+  }
+  return movieGenre;
 }
 
 function updateMovieClicked(event) {
