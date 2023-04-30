@@ -6,7 +6,7 @@ window.addEventListener("load", initApp);
 // Firebase variabel
 const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// Tom variabel til vores film data
+// Tom variabel til vores filmdata
 let movies;
 
 // Start app funktion
@@ -79,10 +79,11 @@ function showMovie(movieObject) {
 <article class="list-entry">
 <h2 id="list-title">${movieObject.title}</h2>
     <img id="list-image" src = "${movieObject.posterUrl}"/>
-    <p id="list-director">${movieObject.director}</p>
+    <p id="list-runtime" >Runtime: ${movieObject.runtime} minutes</p>
+    <p id="list-director">${movieObject.director} (${movieObject.year})</p>
     <p id="list-genre">${movieGenre}</p>
     <button id="btn-update">UPDATE</button>
-        <button id="btn-delete">DELETE</button>
+    <button id="btn-delete">DELETE</button>
 
 </article>
 `
@@ -100,8 +101,14 @@ function showMovie(movieObject) {
   function movieClicked() {
     // Viser titel, id og billede på film når filmen er blevet klikket på
     document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
-    document.querySelector("#dialog-id").textContent = `${movieObject.id}`;
+    document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
+    document.querySelector("#dialog-year").textContent = `Release year: ${movieObject.year}`;
+    document.querySelector("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
+    document.querySelector("#dialog-genres").textContent = `Genres: ${movieGenre}`;
     document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
+    document.querySelector("#dialog-plot").textContent = `Plot: ${movieObject.plot}`;
+    document.querySelector("#dialog-actors").textContent = `Main Cast: ${movieObject.actors}`;
+
     document.querySelector("#dialog-movie").showModal();
 
     // Gør baggrunden mørkere, så dialogen fremstår mere klart

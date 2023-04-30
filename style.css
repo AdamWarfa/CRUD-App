@@ -165,9 +165,8 @@ dialog {
   position: relative;
   width: 40vw;
   height: 40vw;
-  overflow: hidden;
 }
 
 dialog img {
-  width: 50%;
+  width: 20%;
 }
