@@ -49,9 +49,9 @@ header {
 
 #cmdb-logo {
   position: absolute;
-  width: 200px;
-  top: 5px;
-  left: 20px;
+  width: 170px;
+  top: 10px;
+  left: 35px;
 }
 
 /* ========== NAV ELEMENTS ========== */
@@ -59,11 +59,10 @@ header {
 #btn-create-movie {
   position: absolute;
   top: 13px;
-  background: rgb(81, 137, 196);
-  background: linear-gradient(0deg, rgba(81, 137, 196, 1) 0%, rgba(96, 168, 227, 1) 52%, rgba(145, 206, 255, 1) 100%);
+  background: #8bc4f2;
   border: none;
-  color: #fbe7e8;
-  font-size: 20px;
+  color: #000000;
+  font-size: 18px;
   font-weight: 500;
   left: 50%;
   transform: translate(-50%);
@@ -74,8 +73,8 @@ header {
   top: 13px;
   background: #bae0ff;
   border: none;
-  color: #232020;
-  font-size: 20px;
+  color: #000000;
+  font-size: 18px;
   font-weight: 500;
   left: 50%;
   transform: translate(-50%);
@@ -83,7 +82,7 @@ header {
 
 nav {
   position: absolute;
-  top: 0;
+  top: 3px;
   left: 60vw;
 }
 
