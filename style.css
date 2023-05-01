@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 /* ========== BACKGROUND & BACKGROUND EFFECTS ========== */
@@ -27,22 +28,20 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100vw;
-  margin-left: 1.5vw;
+  margin-left: 2.8vw;
   margin-top: 2vw;
 }
 
 /* ========== HEADER ========== */
 
 header {
-  position: relative;
+  position: fixed;
   top: 0;
   height: 65px;
+  width: 100vw;
+  z-index: 5;
   background: rgb(255, 223, 226);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 223, 226, 1) 0%,
-    rgba(245, 208, 244, 1) 100%
-  );
+  background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
 }
 
 /* ========== LOGO ========== */
@@ -56,8 +55,34 @@ header {
 
 /* ========== NAV ELEMENTS ========== */
 
+#btn-create-movie {
+  position: absolute;
+  top: 13px;
+  background: rgb(81, 137, 196);
+  background: linear-gradient(0deg, rgba(81, 137, 196, 1) 0%, rgba(96, 168, 227, 1) 52%, rgba(145, 206, 255, 1) 100%);
+  border: none;
+  color: #fbe7e8;
+  font-size: 20px;
+  font-weight: 500;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#btn-create-movie:hover {
+  position: absolute;
+  top: 13px;
+  background: #bae0ff;
+  border: none;
+  color: #232020;
+  font-size: 20px;
+  font-weight: 500;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 nav {
   position: absolute;
+  top: 0;
   left: 60vw;
 }
 
@@ -95,10 +120,7 @@ nav {
   transition: 0.5s;
   left: 250px;
   top: 8px;
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
-    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2), inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .search-container:hover > .search-input {
@@ -143,14 +165,10 @@ nav {
   -webkit-box-shadow: 0px 0px 60px -17px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 60px -17px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 60px -17px rgba(0, 0, 0, 0.75);
-  z-index: 5;
+  z-index: 4;
   transform: scale(105%);
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    42deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8239670868347339) 100%
-  );
+  background: linear-gradient(42deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8239670868347339) 100%);
 }
 
 .list-entry img {

@@ -138,7 +138,7 @@ function showMovie(movieObject) {
     updateForm.runtime.value = movieObject.runtime;
     updateForm.plot.value = movieObject.plot;
     updateForm.actors.value = movieObject.actors;
-    updateForm.image.value = movieObject.posterUrl;
+    updateForm.posterUrl.value = movieObject.posterUrl;
     updateForm.setAttribute("data-id", movieObject.id);
 
     document.querySelector("#dialog-update-movie").showModal();
@@ -174,18 +174,19 @@ function updateMovieClicked(event) {
   const runtime = form.runtime.value;
   const plot = form.plot.value;
   const actors = form.actors.value;
-  const image = form.image.value;
+  const posterUrl = form.posterUrl.value;
   const id = form.getAttribute("data-id");
+  const genres = [form.genres.value];
 
   console.log("Update  clicked!", id);
 
-  updateMovie(id, title, director, year, runtime, plot, actors, image);
-  document.querySelector("#dialog-update-movie").close();
+  updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
+  closeDialog();
 }
 
-async function updateMovie(id, title, body, image) {
+async function updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
   // Laver objekt med opdateret filminformation
-  const movieToUpdate = { title, body, image };
+  const movieToUpdate = { title, director, year, runtime, plot, actors, posterUrl, genres, id };
   const json = JSON.stringify(movieToUpdate);
 
   const response = await fetch(`${endPoint}/movies/${id}.json`, {
@@ -208,8 +209,8 @@ function showCreateMovieDialog() {
 }
 
 // Funktion der laver nyt objekt med filminformation
-async function createMovie(title, body, image) {
-  const newMovie = { title: title, body: body, image: image };
+async function createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
+  const newMovie = { title: title, director: director, year: year, runtime: runtime, plot: plot, actors: actors, posterUrl: posterUrl, genres: genres, id: id };
   const json = JSON.stringify(newMovie);
 
   const response = await fetch(`${endPoint}/movies.json`, {
@@ -230,17 +231,24 @@ function createMovieClicked(event) {
 
   const form = event.target;
   const title = form.title.value;
-  const body = form.body.value;
-  const image = form.image.value;
+  const director = form.director.value;
+  const year = form.year.value;
+  const runtime = form.runtime.value;
+  const plot = form.plot.value;
+  const actors = form.actors.value;
+  const posterUrl = form.posterUrl.value;
+  const id = form.getAttribute("data-id");
+  const genres = [form.genres.value];
 
-  createMovie(title, body, image);
+  createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
   form.reset();
-  document.querySelector("#dialog-create-movie").close();
+  closeDialog();
 }
 
 function closeDialog() {
   // Lukker dialog, fjerner formørkelse af baggrund
   document.querySelector("#dialog-movie").close();
+  document.querySelector("#dialog-create-movie").close();
   document.querySelector("#dialog-delete-movie").close();
   document.querySelector("#dialog-update-movie").close();
   document.querySelector("#background").classList.remove("dim");
@@ -258,7 +266,7 @@ function deleteMovieClicked(event) {
   deleteMovie(id);
   form.reset();
 
-  document.querySelector("#dialog-delete-movie").close();
+  closeDialog();
 }
 
 async function deleteMovie(id) {
