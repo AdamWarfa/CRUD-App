@@ -206,6 +206,8 @@ function showCreateMovieDialog() {
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
+
+  document.querySelector("#btn-cancel-create-movie").addEventListener("click", closeDialog);
 }
 
 // Funktion der laver nyt objekt med filminformation
