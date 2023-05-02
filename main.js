@@ -106,6 +106,7 @@ function showMovie(movieObject) {
 }
 
 function movieClicked(movieObject) {
+  let movieGenre = getGenre(movieObject);
   // Viser titel, director, udgivelsesår, spilletid, genre(r), billede, plottet og hovedroller på film, når filmen er blevet klikket på
   document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
   document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
