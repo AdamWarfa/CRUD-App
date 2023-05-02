@@ -20,13 +20,13 @@ function globalEventListeners() {
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
-
+  document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
 
 async function updateMoviesGrid() {
-  const movies = await getMovies();
+  movies = await getMovies();
   showMovies(movies);
 }
 
@@ -309,8 +309,10 @@ function searchMovies(searchValue) {
   // return results;
 }
 
-function sortMovies(sortType) {
-  showMovies(movies.sort((a, b) => a[sortType]localeCompare(b[sortType])
+function sortMovies(event) {
+  const selectedValue = event.target.value;
+  movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
+  showMovies(movies);
 }
 
 //to do:
