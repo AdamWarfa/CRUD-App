@@ -9,6 +9,10 @@ const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatab
 // Tom variabel til vores filmdata
 let movies;
 
+// document.querySelector & addEventListener
+document.querySelector = d.qs;
+addEventListener = eListener;
+
 // Start app funktion
 function initApp() {
   globalEventListeners();
@@ -16,13 +20,13 @@ function initApp() {
 }
 
 function globalEventListeners() {
-  document.querySelector("#form-create-movie").addEventListener("submit", createMovieClicked);
-  document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
-  document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
-  document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
+  d.qs("#form-create-movie").eListener("submit", createMovieClicked);
+  d.qs("#form-update-movie").eListener("submit", updateMovieClicked);
+  d.qs("#form-delete-movie").eListener("submit", deleteMovieClicked);
+  d.qs("#btn-create-movie").eListener("click", showCreateMovieDialog);
 
-  document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
-  document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
+  d.qs("#input-search").eListener("keyup", inputSearchChanged);
+  d.qs("#input-search").eListener("search", inputSearchChanged);
 }
 
 async function updateMoviesGrid() {
@@ -53,7 +57,7 @@ function prepareMovieData(dataObject) {
 }
 
 function showMovies(listOfMovies) {
-  document.querySelector("#grid").innerHTML = "";
+  d.qs("#grid").innerHTML = "";
 
   /* 
   Når man laver et nyt "create post", giver den fejlbesked i konsollen, da objektets datastruktur ikke stemmer overens med databasen.
@@ -72,7 +76,7 @@ function showMovies(listOfMovies) {
 function showMovie(movieObject) {
   let movieGenre = getGenre(movieObject);
 
-  document.querySelector("#grid").insertAdjacentHTML(
+  d.qs("#grid").insertAdjacentHTML(
     "beforeend",
     /*html*/ `
 
@@ -90,62 +94,62 @@ function showMovie(movieObject) {
   );
 
   // Click events til at åbne, slette og opdatere film
-  document.querySelector("#grid article:last-child img").addEventListener("click", movieClicked);
-  document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector("#grid article:last-child #btn-update").addEventListener("click", updateClicked);
+  d.qs("#grid article:last-child img").eListener("click", () => movieClicked(movieObject));
+  d.qs("#grid article:last-child #btn-delete").eListener("click", () => deleteClicked(movieObject));
+  d.qs("#grid article:last-child #btn-update").eListener("click", () => updateClicked(movieObject));
 
   // Cancel knapper der kan lukke et åbnet film dialog
-  document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
-  document.querySelector("#btn-cancel-update-movie").addEventListener("click", closeDialog);
+  d.qs(".btn-cancel").eListener("click", closeDialog);
+  d.qs("#btn-cancel-update-movie").eListener("click", closeDialog);
+}
 
-  function movieClicked() {
-    // Viser titel, director, udgivelsesår, spilletid, genre(r), billede, plottet og hovedroller på film, når filmen er blevet klikket på
-    document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
-    document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
-    document.querySelector("#dialog-year").textContent = `Release year: ${movieObject.year}`;
-    document.querySelector("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
-    document.querySelector("#dialog-genres").textContent = `Genres: ${movieGenre}`;
-    document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
-    document.querySelector("#dialog-plot").textContent = `Plot: ${movieObject.plot}`;
-    document.querySelector("#dialog-actors").textContent = `Main Cast: ${movieObject.actors}`;
+function movieClicked(movieObject) {
+  // Viser titel, director, udgivelsesår, spilletid, genre(r), billede, plottet og hovedroller på film, når filmen er blevet klikket på
+  d.qs("#dialog-title").textContent = `${movieObject.title}`;
+  d.qs("#dialog-director").textContent = `Director: ${movieObject.director}`;
+  d.qs("#dialog-year").textContent = `Release year: ${movieObject.year}`;
+  d.qs("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
+  d.qs("#dialog-genres").textContent = `Genres: ${movieGenre}`;
+  d.qs("#dialog-img").src = `${movieObject.posterUrl}`;
+  d.qs("#dialog-plot").textContent = `Plot: ${movieObject.plot}`;
+  d.qs("#dialog-actors").textContent = `Main Cast: ${movieObject.actors}`;
 
-    document.querySelector("#dialog-movie").showModal();
+  d.qs("#dialog-movie").showModal();
 
-    // Gør baggrunden mørkere, så dialogen fremstår mere klart
-    document.querySelector("#background").classList.add("dim");
-    document.querySelector("header").classList.add("dim");
-    document.querySelector("#grid").classList.add("dim");
+  // Gør baggrunden mørkere, så dialogen fremstår mere klart
+  d.qs("#background").classList.add("dim");
+  d.qs("header").classList.add("dim");
+  d.qs("#grid").classList.add("dim");
 
-    // Lukker dialog
-    document.querySelector("#btn-close").addEventListener("click", closeDialog);
-  }
+  // Lukker dialog
+  d.qs("#btn-close").eListener("click", closeDialog);
+}
 
-  function deleteClicked() {
-    document.querySelector("#dialog-delete-movie-title").textContent = movieObject.title;
-    document.querySelector("#form-delete-movie").setAttribute("data-id", movieObject.id);
-    document.querySelector("#dialog-delete-movie").showModal();
-    document.querySelector("#background").classList.add("dim");
-    document.querySelector("header").classList.add("dim");
-    document.querySelector("#grid").classList.add("dim");
-  }
+function deleteClicked(movieObject) {
+  d.qs("#dialog-delete-movie-title").textContent = movieObject.title;
+  d.qs("#form-delete-movie").setAttribute("data-id", movieObject.id);
+  d.qs("#dialog-delete-movie").showModal();
+  d.qs("#background").classList.add("dim");
+  d.qs("header").classList.add("dim");
+  d.qs("#grid").classList.add("dim");
+}
 
-  function updateClicked() {
-    const updateForm = document.querySelector("#form-update-movie");
+function updateClicked(movieObject) {
+  const updateForm = d.qs("#form-update-movie");
 
-    updateForm.title.value = movieObject.title;
-    updateForm.director.value = movieObject.director;
-    updateForm.year.value = movieObject.year;
-    updateForm.runtime.value = movieObject.runtime;
-    updateForm.plot.value = movieObject.plot;
-    updateForm.actors.value = movieObject.actors;
-    updateForm.posterUrl.value = movieObject.posterUrl;
-    updateForm.setAttribute("data-id", movieObject.id);
+  updateForm.title.value = movieObject.title;
+  updateForm.director.value = movieObject.director;
+  updateForm.year.value = movieObject.year;
+  updateForm.runtime.value = movieObject.runtime;
+  updateForm.plot.value = movieObject.plot;
+  updateForm.actors.value = movieObject.actors;
+  updateForm.posterUrl.value = movieObject.posterUrl;
+  updateForm.setAttribute("data-id", movieObject.id);
 
-    document.querySelector("#dialog-update-movie").showModal();
-    document.querySelector("#background").classList.add("dim");
-    document.querySelector("header").classList.add("dim");
-    document.querySelector("#grid").classList.add("dim");
-  }
+  d.qs("#dialog-update-movie").showModal();
+  d.qs("#background").classList.add("dim");
+  d.qs("header").classList.add("dim");
+  d.qs("#grid").classList.add("dim");
 }
 
 function getGenre(movie) {
@@ -202,12 +206,12 @@ async function updateMovie(title, director, year, runtime, plot, actors, posterU
 }
 
 function showCreateMovieDialog() {
-  document.querySelector("#dialog-create-movie").showModal();
-  document.querySelector("#background").classList.add("dim");
-  document.querySelector("header").classList.add("dim");
-  document.querySelector("#grid").classList.add("dim");
+  d.qs("#dialog-create-movie").showModal();
+  d.qs("#background").classList.add("dim");
+  d.qs("header").classList.add("dim");
+  d.qs("#grid").classList.add("dim");
 
-  document.querySelector("#btn-cancel-create-movie").addEventListener("click", closeDialog);
+  d.qs("#btn-cancel-create-movie").eListener("click", closeDialog);
 }
 
 // Funktion der laver nyt objekt med filminformation
@@ -249,13 +253,13 @@ function createMovieClicked(event) {
 
 function closeDialog() {
   // Lukker dialog, fjerner formørkelse af baggrund
-  document.querySelector("#dialog-movie").close();
-  document.querySelector("#dialog-create-movie").close();
-  document.querySelector("#dialog-delete-movie").close();
-  document.querySelector("#dialog-update-movie").close();
-  document.querySelector("#background").classList.remove("dim");
-  document.querySelector("header").classList.remove("dim");
-  document.querySelector("#grid").classList.remove("dim");
+  d.qs("#dialog-movie").close();
+  d.qs("#dialog-create-movie").close();
+  d.qs("#dialog-delete-movie").close();
+  d.qs("#dialog-update-movie").close();
+  d.qs("#background").classList.remove("dim");
+  d.qs("header").classList.remove("dim");
+  d.qs("#grid").classList.remove("dim");
 }
 
 function deleteMovieClicked(event) {
@@ -281,15 +285,13 @@ async function deleteMovie(id) {
 }
 
 function inputSearchChanged(event) {
-  const value = event.target.value;
-  const moviesToShow = searchMovies(value);
   console.log(moviesToShow);
-  showMovies(moviesToShow);
+  showMovies(searchMovies(event.target.value));
 }
 
 function searchMovies(searchValue) {
   if (movies) {
-    const filteredMovies = movies.filter((movie) => {
+    const filteredMovies = movies.filter(movie => {
       // filter movies based on search term
       return movie.title.toLowerCase().includes(searchValue.toLowerCase());
     });
