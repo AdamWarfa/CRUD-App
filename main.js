@@ -309,8 +309,9 @@ function searchMovies(searchValue) {
   // return results;
 }
 
-function sortMovies(event) {
+async function sortMovies(event) {
   const selectedValue = event.target.value;
+  const movies = await getMovies();
   movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   showMovies(movies);
 }
