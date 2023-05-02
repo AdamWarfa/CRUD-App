@@ -47,9 +47,13 @@ function prepareMovieData(dataObject) {
 
   // for in som pusher fetchede JSON data ind i vores array
   for (const key in dataObject) {
-    const movie = dataObject[key];
-    movie.id = key;
-    movieArray.push(movie);
+    try {
+      const movie = dataObject[key];
+      movie.id = key;
+      movieArray.push(movie);
+    } catch (error) {
+      console.log(`Nogen har ødelagt vores film så de giver ${dataObject[key]}`);
+    }
   }
   console.log(movieArray);
   return movieArray;
