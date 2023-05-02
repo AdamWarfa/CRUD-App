@@ -1,16 +1,8 @@
-"use strict";
+import { getMovies, updateMovie, createMovie, deleteMovie } from "./rest-service.js";
+
 window.addEventListener("load", initApp);
 
 // Globale variabler
-
-// Firebase variabel
-const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
-
-// Tom variabel til vores filmdata
-let movies;
-let potato;
-
-// document.querySelector & addEventListener
 
 // Start app funktion
 function initApp() {
@@ -32,32 +24,6 @@ function globalEventListeners() {
 async function updateMoviesGrid() {
   const movies = await getMovies();
   showMovies(movies);
-}
-
-async function getMovies() {
-  // Fetch JSON data fra vores database
-  const response = await fetch(`${endPoint}/movies.json`);
-  const data = await response.json();
-  const movies = prepareMovieData(data);
-
-  return movies;
-}
-
-function prepareMovieData(dataObject) {
-  const movieArray = [];
-
-  // for in som pusher fetchede JSON data ind i vores array
-  for (const key in dataObject) {
-    try {
-      const movie = dataObject[key];
-      movie.id = key;
-      movieArray.push(movie);
-    } catch (error) {
-      console.log(`Nogen har ødelagt vores film så de giver ${dataObject[key]}`);
-    }
-  }
-  console.log(movieArray);
-  return movieArray;
 }
 
 function showMovies(listOfMovies) {
@@ -173,7 +139,7 @@ function getGenre(movie) {
   return movieGenre;
 }
 
-function updateMovieClicked(event) {
+async function updateMovieClicked(event) {
   event.preventDefault();
 
   const form = event.target;
@@ -187,36 +153,14 @@ function updateMovieClicked(event) {
   const id = form.getAttribute("data-id");
   const genres = [form.genres.value];
 
-  console.log("Update  clicked!", id);
-
-  updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
-  closeDialog();
-}
-
-async function updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
-  // Laver objekt med opdateret filminformation
-  const movieToUpdate = {
-    title,
-    director,
-    year,
-    runtime,
-    plot,
-    actors,
-    posterUrl,
-    genres,
-    id,
-  };
-  const json = JSON.stringify(movieToUpdate);
-
-  const response = await fetch(`${endPoint}/movies/${id}.json`, {
-    method: "PUT",
-    body: json,
-  });
+  const response = await updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
 
   // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
+    console.log("Update  clicked!", id);
     // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
+    closeDialog();
   }
 }
 
@@ -229,35 +173,8 @@ function showCreateMovieDialog() {
   document.querySelector("#btn-cancel-create-movie").addEventListener("click", closeDialog);
 }
 
-// Funktion der laver nyt objekt med filminformation
-async function createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
-  const newMovie = {
-    title: title,
-    director: director,
-    year: year,
-    runtime: runtime,
-    plot: plot,
-    actors: actors,
-    posterUrl: posterUrl,
-    genres: genres,
-    id: id,
-  };
-  const json = JSON.stringify(newMovie);
-
-  const response = await fetch(`${endPoint}/movies.json`, {
-    method: "POST",
-    body: json,
-  });
-  // Tjekker hvis response er okay, hvis response er succesfuld ->
-  if (response.ok) {
-    console.log("New movie succesfully added to Firebase 🔥");
-    // Opdater MoviesGrid til at displaye all film og den nye film
-    updateMoviesGrid();
-  }
-}
-
 // Create movie click event
-function createMovieClicked(event) {
+async function createMovieClicked(event) {
   event.preventDefault();
 
   const form = event.target;
@@ -271,9 +188,15 @@ function createMovieClicked(event) {
   const id = form.getAttribute("data-id");
   const genres = [form.genres.value];
 
-  createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
-  form.reset();
-  closeDialog();
+  const response = await createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
+  if (response.ok) {
+    console.log("New movie succesfully added to Firebase 🔥");
+    // Opdater MoviesGrid til at displaye all film og den nye film
+    updateMoviesGrid();
+    form.reset();
+    closeDialog();
+  }
 }
 
 function closeDialog() {
@@ -287,25 +210,21 @@ function closeDialog() {
   document.querySelector("#grid").classList.remove("dim");
 }
 
-function deleteMovieClicked(event) {
+async function deleteMovieClicked(event) {
   event.preventDefault();
 
   const form = event.target;
   const id = form.getAttribute("data-id");
-  console.log("Delete  clicked!", id);
 
-  deleteMovie(id);
-  form.reset();
+  const response = await deleteMovie(id);
 
-  closeDialog();
-}
-
-async function deleteMovie(id) {
-  const response = await fetch(`${endPoint}/movies/${id}.json`, {
-    method: "DELETE",
-  });
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
+    console.log("Delete  clicked!", id);
+    // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
+    form.reset();
+    closeDialog();
   }
 }
 
@@ -319,7 +238,7 @@ async function inputSearchChanged(event) {
 
 async function searchMovies(searchValue) {
   const movies = await getMovies();
-  return movies.filter((movie) => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
+  return movies.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
 }
 
 async function sortMovies(event) {
