@@ -13,12 +13,12 @@ function initApp() {
 function globalEventListeners() {
   document.querySelector("#form-create-movie").addEventListener("submit", createMovieClicked);
   document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
-  document.querySelector("#form-delete-movie");
-  addEventListener("submit", deleteMovieClicked);
+  document.querySelector("#form-delete-movie").addEventListener("submit", deleteMovieClicked);
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
 
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
+  document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
 }
 
 async function updateMoviesGrid() {
@@ -239,6 +239,13 @@ async function inputSearchChanged(event) {
 async function searchMovies(searchValue) {
   const movies = await getMovies();
   return movies.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
+}
+
+async function sortMovies(event) {
+  const selectedValue = event.target.value;
+  const movies = await getMovies();
+  movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
+  showMovies(movies);
 }
 
 //to do:
