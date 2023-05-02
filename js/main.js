@@ -4,11 +4,6 @@ window.addEventListener("load", initApp);
 
 // Globale variabler
 
-// Tom variabel til vores filmdata
-let movies;
-
-// document.querySelector & addEventListener
-
 // Start app funktion
 function initApp() {
   globalEventListeners();
@@ -159,8 +154,11 @@ async function updateMovieClicked(event) {
   const genres = [form.genres.value];
 
   const response = await updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
+
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
     console.log("Update  clicked!", id);
+    // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
     closeDialog();
   }
@@ -219,8 +217,11 @@ async function deleteMovieClicked(event) {
   const id = form.getAttribute("data-id");
 
   const response = await deleteMovie(id);
+
+  // Tjekker hvis response er okay, hvis response er succesfuld ->
   if (response.ok) {
     console.log("Delete  clicked!", id);
+    // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
     form.reset();
     closeDialog();

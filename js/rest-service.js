@@ -33,10 +33,6 @@ async function updateMovie(title, director, year, runtime, plot, actors, posterU
   });
 
   return response;
-  //   // Tjekker hvis response er okay, hvis response er succesfuld ->
-  //   if (response.ok) {
-  //     // Opdater MoviesGrid til at displaye all film og den nye film
-  //     updateMoviesGrid();
 }
 
 // Funktion der laver nyt objekt med filminformation
