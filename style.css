@@ -236,3 +236,9 @@ dialog img {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+/* ========== VALIDERING ========== */
+
+input:invalid {
+  border-color: crimson;
+}
