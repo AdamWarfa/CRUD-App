@@ -45,22 +45,22 @@
 
         <label for="title-create">Title:</label>
         <br />
-        <input type="text" id="title-create" name="title" placeholder="Create title" />
+        <input type="text" id="title-create" name="title" placeholder="Create title" minlength="2" maxlength="100" required />
         <br />
         <br />
         <label for="director-create">Director:</label>
         <br />
-        <input type="text" id="director-create" name="director" placeholder="Create director" />
+        <input type="text" id="director-create" name="director" placeholder="Create director" minlength="3" required />
         <br />
         <br />
         <label for="year-create">Year:</label>
         <br />
-        <input type="text" id="year-create" name="year" placeholder="Create the release year" />
+        <input type="text" id="year-create" name="year" placeholder="Create the release year" minlength="4" required />
         <br />
         <br />
         <label for="runtime-create">Runtime:</label>
         <br />
-        <input type="text" id="runtime-create" name="runtime" placeholder="Create runtime" />
+        <input type="text" id="runtime-create" name="runtime" placeholder="Create runtime" minlength="2" required />
         <br />
         <br />
         <label for="plot-create">Plot:</label>
@@ -75,12 +75,12 @@
         <br />
         <label for="genres-create">Genres:</label>
         <br />
-        <input type="text" id="genres-create" name="genres" placeholder="Create genres" />
+        <input type="text" id="genres-create" name="genres" placeholder="Create genres" minlength="3" required />
         <br />
         <br />
         <label for="posterUrl-create">Poster URL:</label>
         <br />
-        <input type="url" id="posterUrl-create" name="posterUrl" placeholder="Create poster URL" />
+        <input type="url" id="posterUrl-create" name="posterUrl" placeholder="Create poster URL" required />
         <br />
         <br />
         <button>Create Movie</button>
