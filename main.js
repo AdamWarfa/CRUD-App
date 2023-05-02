@@ -133,7 +133,7 @@ function deleteClicked(movieObject) {
 }
 
 function updateClicked(movieObject) {
-  const updateForm = document.querySelectors("#form-update-movie");
+  const updateForm = document.querySelector("#form-update-movie");
 
   updateForm.title.value = movieObject.title;
   updateForm.director.value = movieObject.director;
