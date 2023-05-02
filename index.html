@@ -14,8 +14,9 @@
   <body>
     <header>
       <div id="logo-container">
-        <img src="assets/cmdb.png" alt="" id="cmdb-logo" />
+        <a href=""><img src="assets/cmdb.png" alt="" id="cmdb-logo" /></a>
       </div>
+
       <div class="search-container">
         <input type="search" id="input-search" name="search" placeholder="Search..." class="search-input" />
         <a href="#" class="search-btn">
@@ -26,18 +27,20 @@
       <nav id="navbar">
         <ul>
           <li><a href="">Movies</a></li>
-          <li><a href="">Series</a></li>
           <li><a href="">Genres</a></li>
           <li><a href="">Home</a></li>
+          <li>        
+            <select id="select-sort-by">
+              <option value="title">Title</option>
+              <option value="director">Director</option>
+              <option value="year">Release Year</option>
+              <option value="runtime">Runtime</option>
+            </select>
+          </li>
         </ul>
+
       </nav>
     </header>
-    <select id="select-sort-by">
-      <option value="title">Title</option>
-      <option value="director">Director</option>
-      <option value="year">Release Year</option>
-      <option value="runtime">Runtime</option>
-    </select>
     <div id="background"></div>
     <dialog id="dialog-create-movie">
       <h2>Create new movie</h2>
