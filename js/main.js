@@ -1,4 +1,5 @@
 import { getMovies, updateMovie, createMovie, deleteMovie } from "./rest-service.js";
+// import { sortMovies } from "./helpers.js";
 
 window.addEventListener("load", initApp);
 
@@ -17,6 +18,7 @@ function globalEventListeners() {
   document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
 
   document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
+  // document.querySelector("#input-search").addEventListener("keyup", async event => showMovies(await searchMovies(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
   document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
 }
@@ -101,7 +103,7 @@ function deleteClicked(movieObject) {
   document.querySelector("#dialog-delete-movie").showModal();
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
-  document.querySelectors("#grid").classList.add("dim");
+  document.querySelector("#grid").classList.add("dim");
 }
 
 function updateClicked(movieObject) {
@@ -229,11 +231,10 @@ async function deleteMovieClicked(event) {
 }
 
 async function inputSearchChanged(event) {
-  const search = event.target.value;
-  // console.log(search);
-  const newMovieList = await searchMovies(search);
-  // console.log(newMovieList);
-  showMovies(newMovieList);
+  // const search = event.target.value;
+  // const newMovieList = await searchMovies(search);
+  // showMovies(newMovieList);
+  showMovies(await searchMovies(event.target.value));
 }
 
 async function searchMovies(searchValue) {
@@ -244,6 +245,8 @@ async function searchMovies(searchValue) {
 async function sortMovies(event) {
   const selectedValue = event.target.value;
   const movies = await getMovies();
+  //   const movies = await getMovies();
+  //   await getMovies().sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   showMovies(movies);
 }
