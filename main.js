@@ -4,8 +4,7 @@ window.addEventListener("load", initApp);
 // Globale variabler
 
 // Firebase variabel
-const endPoint =
-  "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
+const endPoint = "https://movie-db-99347-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // Tom variabel til vores filmdata
 let movies;
@@ -19,24 +18,14 @@ function initApp() {
 }
 
 function globalEventListeners() {
-  document
-    .querySelector("#form-create-movie")
-    .addEventListener("submit", createMovieClicked);
-  document
-    .querySelector("#form-update-movie")
-    .addEventListener("submit", updateMovieClicked);
+  document.querySelector("#form-create-movie").addEventListener("submit", createMovieClicked);
+  document.querySelector("#form-update-movie").addEventListener("submit", updateMovieClicked);
   document.querySelector("#form-delete-movie");
   addEventListener("submit", deleteMovieClicked);
-  document
-    .querySelector("#btn-create-movie")
-    .addEventListener("click", showCreateMovieDialog);
+  document.querySelector("#btn-create-movie").addEventListener("click", showCreateMovieDialog);
 
-  document
-    .querySelector("#input-search")
-    .addEventListener("keyup", inputSearchChanged);
-  document
-    .querySelector("#input-search")
-    .addEventListener("search", inputSearchChanged);
+  document.querySelector("#input-search").addEventListener("keyup", inputSearchChanged);
+  document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
 }
 
 async function updateMoviesGrid() {
@@ -103,45 +92,25 @@ function showMovie(movieObject) {
   );
 
   // Click events til at åbne, slette og opdatere film
-  document
-    .querySelector("#grid article:last-child img")
-    .addEventListener("click", () => movieClicked(movieObject));
-  document
-    .querySelector("#grid article:last-child #btn-delete")
-    .addEventListener("click", () => deleteClicked(movieObject));
-  document
-    .querySelector("#grid article:last-child #btn-update")
-    .addEventListener("click", () => updateClicked(movieObject));
+  document.querySelector("#grid article:last-child img").addEventListener("click", () => movieClicked(movieObject));
+  document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", () => deleteClicked(movieObject));
+  document.querySelector("#grid article:last-child #btn-update").addEventListener("click", () => updateClicked(movieObject));
 
   // Cancel knapper der kan lukke et åbnet film dialog
   document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
-  document
-    .querySelector("#btn-cancel-update-movie")
-    .addEventListener("click", closeDialog);
+  document.querySelector("#btn-cancel-update-movie").addEventListener("click", closeDialog);
 }
 
 function movieClicked(movieObject) {
   // Viser titel, director, udgivelsesår, spilletid, genre(r), billede, plottet og hovedroller på film, når filmen er blevet klikket på
   document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
-  document.querySelector(
-    "#dialog-director"
-  ).textContent = `Director: ${movieObject.director}`;
-  document.querySelector(
-    "#dialog-year"
-  ).textContent = `Release year: ${movieObject.year}`;
-  ddocument.querySelector(
-    "#dialog-runtime"
-  ).textContent = `Runtime: ${movieObject.runtime} minutes`;
-  document.querySelector(
-    "#dialog-genres"
-  ).textContent = `Genres: ${movieGenre}`;
+  document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
+  document.querySelector("#dialog-year").textContent = `Release year: ${movieObject.year}`;
+  ddocument.querySelector("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
+  document.querySelector("#dialog-genres").textContent = `Genres: ${movieGenre}`;
   document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
-  document.querySelector(
-    "#dialog-plot"
-  ).textContent = `Plot: ${movieObject.plot}`;
-  document.querySelector(
-    "#dialog-actors"
-  ).textContent = `Main Cast: ${movieObject.actors}`;
+  document.querySelector("#dialog-plot").textContent = `Plot: ${movieObject.plot}`;
+  document.querySelector("#dialog-actors").textContent = `Main Cast: ${movieObject.actors}`;
 
   document.querySelector("#dialog-movie").showModal();
 
@@ -155,11 +124,8 @@ function movieClicked(movieObject) {
 }
 
 function deleteClicked(movieObject) {
-  document.querySelector("#dialog-delete-movie-title").textContent =
-    movieObject.title;
-  document
-    .querySelector("#form-delete-movie")
-    .setAttribute("data-id", movieObject.id);
+  document.querySelector("#dialog-delete-movie-title").textContent = movieObject.title;
+  document.querySelector("#form-delete-movie").setAttribute("data-id", movieObject.id);
   document.querySelector("#dialog-delete-movie").showModal();
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
@@ -216,31 +182,11 @@ function updateMovieClicked(event) {
 
   console.log("Update  clicked!", id);
 
-  updateMovie(
-    title,
-    director,
-    year,
-    runtime,
-    plot,
-    actors,
-    posterUrl,
-    genres,
-    id
-  );
+  updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
   closeDialog();
 }
 
-async function updateMovie(
-  title,
-  director,
-  year,
-  runtime,
-  plot,
-  actors,
-  posterUrl,
-  genres,
-  id
-) {
+async function updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
   // Laver objekt med opdateret filminformation
   const movieToUpdate = {
     title,
@@ -273,23 +219,11 @@ function showCreateMovieDialog() {
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
 
-  document
-    .querySelector("#btn-cancel-create-movie")
-    .addEventListener("click", closeDialog);
+  document.querySelector("#btn-cancel-create-movie").addEventListener("click", closeDialog);
 }
 
 // Funktion der laver nyt objekt med filminformation
-async function createMovie(
-  title,
-  director,
-  year,
-  runtime,
-  plot,
-  actors,
-  posterUrl,
-  genres,
-  id
-) {
+async function createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id) {
   const newMovie = {
     title: title,
     director: director,
@@ -330,17 +264,7 @@ function createMovieClicked(event) {
   const id = form.getAttribute("data-id");
   const genres = [form.genres.value];
 
-  createMovie(
-    title,
-    director,
-    year,
-    runtime,
-    plot,
-    actors,
-    posterUrl,
-    genres,
-    id
-  );
+  createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
   form.reset();
   closeDialog();
 }
@@ -378,31 +302,17 @@ async function deleteMovie(id) {
   }
 }
 
-function inputSearchChanged(event) {
-  console.log(moviesToShow);
-  showMovies(searchMovies(event.target.value));
+async function inputSearchChanged(event) {
+  const search = event.target.value;
+  // console.log(search);
+  const newMovieList = await searchMovies(search);
+  // console.log(newMovieList);
+  showMovies(newMovieList);
 }
 
-function searchMovies(searchValue) {
-  if (movies) {
-    const filteredMovies = movies.filter((movie) => {
-      // filter movies based on search term
-      return movie.title.toLowerCase().includes(searchValue.toLowerCase());
-    });
-    // display filtered movies
-    showMovies(filteredMovies);
-  }
-  // searchValue = searchValue.toLowerCase();
-
-  // const results = movies.filter(checkTitle);
-
-  // function checkTitle(movie) {
-  //   const title = movie.title.toLowerCase();
-  //   console.log(title);
-  //   return title.includes(searchValue);
-  // }
-
-  // return results;
+async function searchMovies(searchValue) {
+  const movies = await getMovies();
+  return movies.filter((movie) => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
 }
 
 //to do:
