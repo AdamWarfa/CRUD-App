@@ -236,15 +236,3 @@ dialog img {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
-/* røde boks rund om boksen der indikere at det der er skrevet in lever op til vilkårne */
-input:invalid{
-  border:2px solid rgb(255,121,121);
-}
-input:focus,
-select:focus,
-textarea:focus,
-button:focus{
-  outline:none;
-}
-
