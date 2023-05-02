@@ -144,17 +144,21 @@
       </form>
     </dialog>
     <dialog id="dialog-movie">
-      <div id="dialog-content">
-        <h2 id="dialog-title">title</h2>
-        <h3 id="dialog-director">director</h3>
-        <p id="dialog-year">year</p>
-        <p id="dialog-runtime">runtime</p>
-        <p id="dialog-genres">genres</p>
-        <img id="dialog-img" src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg" alt="" />
-        <p id="dialog-plot">plot</p>
-        <p id="dialog-actors">actors</p>
-        <button id="btn-close">CLOSE</button>
+      <div id="dialog-grid">
+        <div id="dialog-content-left">
+          <h2 id="dialog-title">title</h2>
+          <h3 id="dialog-director">director</h3>
+          <p id="dialog-year">year</p>
+          <p id="dialog-runtime">runtime</p>
+          <p id="dialog-genres">genres</p>
+        </div>
+        <div id="dialog-content-right">
+          <img id="dialog-img" src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg" alt="" />
+        </div>
       </div>
+      <p id="dialog-plot">plot</p>
+      <p id="dialog-actors">actors</p>
+      <button id="btn-close">CLOSE</button>
     </dialog>
     <section id="grid"></section>
     <script src="main.js"></script>
