@@ -309,6 +309,10 @@ function searchMovies(searchValue) {
   // return results;
 }
 
+function sortMovies(sortType) {
+  showMovies(movies.sort((a, b) => a[sortType]localeCompare(b[sortType])
+}
+
 //to do:
 /*
 Teknologier og programmeringskoncepter
