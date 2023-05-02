@@ -110,7 +110,7 @@ function movieClicked(movieObject) {
   document.querySelector("#dialog-title").textContent = `${movieObject.title}`;
   document.querySelector("#dialog-director").textContent = `Director: ${movieObject.director}`;
   document.querySelector("#dialog-year").textContent = `Release year: ${movieObject.year}`;
-  ddocument.querySelector("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
+  document.querySelector("#dialog-runtime").textContent = `Runtime: ${movieObject.runtime} minutes`;
   document.querySelector("#dialog-genres").textContent = `Genres: ${movieGenre}`;
   document.querySelector("#dialog-img").src = `${movieObject.posterUrl}`;
   document.querySelector("#dialog-plot").textContent = `Plot: ${movieObject.plot}`;
@@ -146,6 +146,7 @@ function updateClicked(movieObject) {
   updateForm.plot.value = movieObject.plot;
   updateForm.actors.value = movieObject.actors;
   updateForm.posterUrl.value = movieObject.posterUrl;
+  updateForm.genres.value = movieObject.genres;
   updateForm.setAttribute("data-id", movieObject.id);
 
   document.querySelector("#dialog-update-movie").showModal();
