@@ -21,6 +21,8 @@ function globalEventListeners() {
   // document.querySelector("#input-search").addEventListener("keyup", async event => showMovies(await searchMovies(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
   document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
+  document.querySelector("#genre-link").addEventListener("click", genreClicked);
+  document.querySelector("#genre-list").addEventListener("click", newGenreClicked);
 }
 
 async function updateMoviesGrid() {
@@ -66,8 +68,12 @@ function showMovie(movieObject) {
 
   // Click events til at åbne, slette og opdatere film
   document.querySelector("#grid article:last-child img").addEventListener("click", () => movieClicked(movieObject));
-  document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", () => deleteClicked(movieObject));
-  document.querySelector("#grid article:last-child #btn-update").addEventListener("click", () => updateClicked(movieObject));
+  document
+    .querySelector("#grid article:last-child #btn-delete")
+    .addEventListener("click", () => deleteClicked(movieObject));
+  document
+    .querySelector("#grid article:last-child #btn-update")
+    .addEventListener("click", () => updateClicked(movieObject));
 
   // Cancel knapper der kan lukke et åbnet film dialog
   document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
@@ -239,7 +245,7 @@ async function inputSearchChanged(event) {
 
 async function searchMovies(searchValue) {
   const movies = await getMovies();
-  return movies.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
+  return movies.filter((movie) => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
 }
 
 async function sortMovies(event) {
@@ -249,6 +255,37 @@ async function sortMovies(event) {
   //   await getMovies().sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   showMovies(movies);
+}
+
+function genreClicked() {
+  document.querySelector("#menu").classList.remove("hide");
+}
+
+
+// async function filterGenre(event) {
+//   const movies = await getMovies();
+//   const selectedValue = event.target.value;
+
+//   return movies.filter((movie) => {
+//     const genreString = movie.genres?.toString();
+//     const genreFirst = genreString?.split(",")[0];
+//     return genreFirst?.toLowerCase().includes(selectedValue.toLowerCase());
+//   });
+// }
+
+async function filterGenre(selectedGenre) {
+  const movies = await getMovies();
+  // const selectedGenre = event.target.dataset.genre;
+
+  return movies.filter((movie) => movie.genres.includes(selectedGenre));
+}
+
+async function newGenreClicked(event) {
+  event.preventDefault();
+  const selectedGenre = event.target.dataset.genre;
+  const newMovieList = await filterGenre(selectedGenre);
+  console.log(newMovieList);
+  showMovies(newMovieList);
 }
 
 //to do:

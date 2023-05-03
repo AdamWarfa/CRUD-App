@@ -23,6 +23,10 @@ body {
   filter: brightness(30%);
 }
 
+.hide {
+  display: none;
+  visibility: hidden;
+}
 /* ========== GRID ========== */
 
 #grid {
@@ -43,6 +47,10 @@ header {
   z-index: 5;
   background: rgb(255, 223, 226);
   background: linear-gradient(180deg, rgba(255, 223, 226, 1) 0%, rgba(245, 208, 244, 1) 100%);
+}
+
+header a {
+  cursor: pointer;
 }
 
 /* ========== LOGO ========== */
@@ -142,7 +150,8 @@ nav {
   transition: 0.5s;
   left: 250px;
   top: 8px;
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2), inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .search-container:hover > .search-input {
@@ -166,6 +175,33 @@ nav {
 #select-sort-by {
   margin-top: 80px;
 }
+
+#menu {
+  width: 100vw;
+  height: 45px;
+  background-color: rgb(99, 91, 91);
+  position: absolute;
+  top: 0;
+  margin-top: 55px;
+}
+
+.list-genre {
+  list-style-type: none;
+  display: inline;
+  margin-right: 12px;
+}
+
+.list-genre a {
+  text-decoration: none;
+  color: rgb(255, 223, 226);
+  cursor: pointer;
+}
+
+.list-genre a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 
 /* ========== FILM KORT ========== */
 
