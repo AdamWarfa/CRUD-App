@@ -21,7 +21,7 @@ function globalEventListeners() {
   // document.querySelector("#input-search").addEventListener("keyup", async event => showMovies(await searchMovies(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
   document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
-  document.querySelector("#genre-link").addEventListener("click", genreClicked);
+  document.querySelector("#genre-link").addEventListener("click", genreLinkClicked);
   document.querySelector("#genre-list").addEventListener("click", newGenreClicked);
 }
 
@@ -68,12 +68,8 @@ function showMovie(movieObject) {
 
   // Click events til at åbne, slette og opdatere film
   document.querySelector("#grid article:last-child img").addEventListener("click", () => movieClicked(movieObject));
-  document
-    .querySelector("#grid article:last-child #btn-delete")
-    .addEventListener("click", () => deleteClicked(movieObject));
-  document
-    .querySelector("#grid article:last-child #btn-update")
-    .addEventListener("click", () => updateClicked(movieObject));
+  document.querySelector("#grid article:last-child #btn-delete").addEventListener("click", () => deleteClicked(movieObject));
+  document.querySelector("#grid article:last-child #btn-update").addEventListener("click", () => updateClicked(movieObject));
 
   // Cancel knapper der kan lukke et åbnet film dialog
   document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
@@ -103,6 +99,7 @@ function movieClicked(movieObject) {
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
+  document.querySelector("#menu").classList.add("dim");
 
   // Lukker dialog
   document.querySelector("#btn-close").addEventListener("click", closeDialog);
@@ -115,6 +112,7 @@ function deleteClicked(movieObject) {
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
+  document.querySelector("#menu").classList.add("dim");
 }
 
 function updateClicked(movieObject) {
@@ -134,6 +132,7 @@ function updateClicked(movieObject) {
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
+  document.querySelector("#menu").classList.add("dim");
 }
 
 function getGenre(movie) {
@@ -182,6 +181,7 @@ function showCreateMovieDialog() {
   document.querySelector("#background").classList.add("dim");
   document.querySelector("header").classList.add("dim");
   document.querySelector("#grid").classList.add("dim");
+  document.querySelector("#menu").classList.add("dim");
 
   document.querySelector("#btn-cancel-create-movie").addEventListener("click", closeDialog);
 }
@@ -221,6 +221,7 @@ function closeDialog() {
   document.querySelector("#background").classList.remove("dim");
   document.querySelector("header").classList.remove("dim");
   document.querySelector("#grid").classList.remove("dim");
+  document.querySelector("#menu").classList.remove("dim");
 }
 
 async function deleteMovieClicked(event) {
@@ -262,10 +263,17 @@ async function sortMovies(event) {
   showMovies(movies);
 }
 
-function genreClicked() {
+function genreLinkClicked() {
+  const genreMenu = document.querySelector("#menu");
   document.querySelector("#menu").classList.remove("hide");
+  if (genreMenu.classList.contains("menu-closed")) {
+    genreMenu.classList.remove("menu-closed");
+    genreMenu.classList.add("menu-open");
+  } else if (genreMenu.classList.contains("menu-open")) {
+    genreMenu.classList.remove("menu-open");
+    genreMenu.classList.add("menu-closed");
+  }
 }
-
 
 // async function filterGenre(event) {
 //   const movies = await getMovies();
@@ -289,7 +297,7 @@ async function newGenreClicked(event) {
   event.preventDefault();
   const selectedGenre = event.target.dataset.genre;
   const newMovieList = await filterGenre(selectedGenre);
-  console.log(newMovieList);
+  // console.log(newMovieList);
   showMovies(newMovieList);
 }
 

@@ -41,7 +41,7 @@
         </ul>
       </nav>
     </header>
-    <div id="menu" class="hide">
+    <div id="menu" class="menu-closed">
       <ul id="genre-list">
         <li class="list-genre"><a href="#" data-genre="Action">Action</a></li>
         <li class="list-genre"><a href="#" data-genre="Adventure">Adventure</a></li>
@@ -58,11 +58,10 @@
         <li class="list-genre"><a href="#" data-genre="Music">Music</a></li>
         <li class="list-genre"><a href="#" data-genre="Mystery">Mystery</a></li>
         <li class="list-genre"><a href="#" data-genre="Romance">Romance</a></li>
-        <li class="list-genre"><a href="#" data-genre="Sci-fi"> Sci-Fi</a></li>
+        <li class="list-genre"><a href="#" data-genre="Sci-Fi"> Sci-Fi</a></li>
         <li class="list-genre"><a href="#" data-genre="Sport">Sport</a></li>
         <li class="list-genre"><a href="#" data-genre="Thriller">Thriller</a></li>
         <li class="list-genre"><a href="#" data-genre="War">War</a></li>
-        <li class="list-genre"><a href="#" data-genre="Western">Western</a></li>
       </ul>
     </div>
     <div id="background"></div>
@@ -72,51 +71,22 @@
         <label for="title-create">Title:</label>
         <br />
 
-        <input
-          type="text"
-          id="title-create"
-          name="title"
-          placeholder="What is the title?"
-          minlength="2"
-          maxlength="100"
-          required
-        />
+        <input type="text" id="title-create" name="title" placeholder="What is the title?" minlength="2" maxlength="100" required />
         <br />
         <br />
         <label for="director-create">Director:</label>
         <br />
-        <input
-          type="text"
-          id="director-create"
-          name="director"
-          placeholder="Who is the director?"
-          minlength="3"
-          required
-        />
+        <input type="text" id="director-create" name="director" placeholder="Who is the director?" minlength="3" required />
         <br />
         <br />
         <label for="year-create">Year:</label>
         <br />
-        <input
-          type="number"
-          id="year-create"
-          name="year"
-          placeholder="What is the release year?"
-          minlength="4"
-          required
-        />
+        <input type="number" id="year-create" name="year" placeholder="What is the release year?" minlength="4" required />
         <br />
         <br />
         <label for="runtime-create">Runtime:</label>
         <br />
-        <input
-          type="number"
-          id="runtime-create"
-          name="runtime"
-          placeholder="What is the runtime in minutes?"
-          minlength="2"
-          required
-        />
+        <input type="number" id="runtime-create" name="runtime" placeholder="What is the runtime in minutes?" minlength="2" required />
         <br />
         <br />
         <label for="plot-create">Plot:</label>
@@ -131,14 +101,7 @@
         <br />
         <label for="genres-create">Genres:</label>
         <br />
-        <input
-          type="text"
-          id="genres-create"
-          pattern="[A-Za-z]{3,}+,[A-Za-z]{3,}+,[A-Za-z]{3,}"
-          name="genres"
-          placeholder="What are the genres?"
-          required
-        />
+        <input type="text" id="genres-create" pattern="[A-Za-z]{3,}+,[A-Za-z]{3,}+,[A-Za-z]{3,}" name="genres" placeholder="What are the genres?" required />
         <br />
         <br />
         <label for="posterUrl-create">Poster URL:</label>
@@ -171,13 +134,7 @@
         <br />
         <label for="runtime-update">Runtime:</label>
         <br />
-        <input
-          type="number"
-          id="runtime-update"
-          name="runtime"
-          placeholder="What is the runtime in minutes?"
-          required
-        />
+        <input type="number" id="runtime-update" name="runtime" placeholder="What is the runtime in minutes?" required />
         <br />
         <br />
         <label for="plot-update">Plot:</label>
@@ -222,11 +179,7 @@
           <p id="dialog-genres">genres</p>
         </div>
         <div id="dialog-content-right">
-          <img
-            id="dialog-img"
-            src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg"
-            alt=""
-          />
+          <img id="dialog-img" src="https://amc-theatres-res.cloudinary.com/v1678621833/amc-cdn/production/2/movies/53700/53699/Poster/Primary_BoxCover_HD_800_1200.jpg" alt="" />
         </div>
       </div>
       <p id="dialog-plot">plot</p>
