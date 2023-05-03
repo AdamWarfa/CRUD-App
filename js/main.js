@@ -4,7 +4,7 @@ import { getMovies, updateMovie, createMovie, deleteMovie } from "./rest-service
 window.addEventListener("load", initApp);
 
 // Globale variabler
-
+let movies;
 // Start app funktion
 function initApp() {
   globalEventListeners();
@@ -26,7 +26,7 @@ function globalEventListeners() {
 }
 
 async function updateMoviesGrid() {
-  const movies = await getMovies();
+  movies = await getMovies();
   showMovies(movies);
 }
 
@@ -250,16 +250,15 @@ async function inputSearchChanged(event) {
 }
 
 async function searchMovies(searchValue) {
-  const movies = await getMovies();
-  return movies.filter((movie) => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
+  movies = await getMovies();
+  return (movies = movies.filter((movie) => movie.title.toLowerCase().includes(searchValue.toLowerCase())));
 }
 
-async function sortMovies(event) {
+function sortMovies(event) {
   const selectedValue = event.target.value;
-  const movies = await getMovies();
   //   const movies = await getMovies();
   //   await getMovies().sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
-  movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
+  movies = movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   showMovies(movies);
 }
 
@@ -287,18 +286,18 @@ function genreLinkClicked() {
 // }
 
 async function filterGenre(selectedGenre) {
-  const movies = await getMovies();
   // const selectedGenre = event.target.dataset.genre;
 
-  return movies.filter((movie) => movie.genres.includes(selectedGenre));
+  return (movies = movies.filter((movie) => movie.genres.includes(selectedGenre)));
 }
 
 async function newGenreClicked(event) {
   event.preventDefault();
+  movies = await getMovies();
   const selectedGenre = event.target.dataset.genre;
-  const newMovieList = await filterGenre(selectedGenre);
+  movies = await filterGenre(selectedGenre);
   // console.log(newMovieList);
-  showMovies(newMovieList);
+  showMovies(movies);
 }
 
 //to do:
