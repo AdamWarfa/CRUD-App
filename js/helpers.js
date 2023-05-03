@@ -11,7 +11,7 @@ function prepareMovieData(dataObject) {
       console.log(`Nogen har ødelagt vores film så de giver ${dataObject[key]}`);
     }
   }
-  console.log(movieArray);
+  // console.log(movieArray);
   return movieArray;
 }
 
