@@ -78,6 +78,11 @@ function showMovie(movieObject) {
   // Cancel knapper der kan lukke et åbnet film dialog
   document.querySelector(".btn-cancel").addEventListener("click", closeDialog);
   document.querySelector("#btn-cancel-update-movie").addEventListener("click", closeDialog);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeDialog();
+    }
+  });
 }
 
 function movieClicked(movieObject) {
