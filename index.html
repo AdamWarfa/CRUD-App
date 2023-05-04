@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
     <title>CRUD-App</title>
   </head>
   <body>
@@ -99,9 +98,29 @@
         <input type="text" id="actors-create" name="actors" placeholder="Any mentionable actors?" required />
         <br />
         <br />
-        <label for="genres-create">Genres:</label>
+        <label for="genres-create">Genre:</label>
         <br />
-        <input type="text" id="genres-create" pattern="[A-Za-z]{3,}+,[A-Za-z]{3,}+,[A-Za-z]{3,}" name="genres" placeholder="What are the genres?" required />
+        <select name="genres" id="genres-create-select" multiple>
+          <option value="Drama">Drama</option>
+          <option value="Horror">Horror</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Animation">Animation</option>
+          <option value="Biography">Biography</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+          <option value="Family">Family</option>
+          <option value="Film-Noir">Film-Noir</option>
+          <option value="History">History</option>
+          <option value="Music">Music</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Sport">Sport</option>
+          <option value="War">War</option>
+        </select>
         <br />
         <br />
         <label for="posterUrl-create">Poster URL:</label>
@@ -149,7 +168,27 @@
         <br />
         <label for="genres-update">Genres:</label>
         <br />
-        <input type="text" id="genres-update" name="genres" placeholder="What are the genres?" required />
+        <select name="genres" id="genres-update-select" multiple>
+          <option value="Drama">Drama</option>
+          <option value="Horror">Horror</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Animation">Animation</option>
+          <option value="Biography">Biography</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+          <option value="Family">Family</option>
+          <option value="Film-Noir">Film-Noir</option>
+          <option value="History">History</option>
+          <option value="Music">Music</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Sport">Sport</option>
+          <option value="War">War</option>
+        </select>
         <br />
         <br />
         <label for="posterUrl-update">Poster URL:</label>

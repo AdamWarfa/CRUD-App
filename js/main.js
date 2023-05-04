@@ -5,6 +5,7 @@ window.addEventListener("load", initApp);
 
 // Globale variabler
 let movies;
+let selectedGenreCreate;
 // Start app funktion
 function initApp() {
   globalEventListeners();
@@ -21,6 +22,9 @@ function globalEventListeners() {
   // document.querySelector("#input-search").addEventListener("keyup", async event => showMovies(await searchMovies(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", inputSearchChanged);
   document.querySelector("#select-sort-by").addEventListener("change", sortMovies);
+  document.querySelector("#genres-create-select").addEventListener("change", getSelectedValue);
+  document.querySelector("#genres-update-select").addEventListener("change", getSelectedValue);
+
   document.querySelector("#genre-link").addEventListener("click", genreLinkClicked);
   document.querySelector("#genre-list").addEventListener("click", newGenreClicked);
 }
@@ -163,7 +167,8 @@ async function updateMovieClicked(event) {
   const actors = form.actors.value;
   const posterUrl = form.posterUrl.value;
   const id = form.getAttribute("data-id");
-  const genres = [form.genres.value];
+  let genres = [selectedGenreCreate];
+  console.log(genres);
 
   const response = await updateMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
 
@@ -199,7 +204,8 @@ async function createMovieClicked(event) {
   const actors = form.actors.value;
   const posterUrl = form.posterUrl.value;
   const id = form.getAttribute("data-id");
-  const genres = [form.genres.value];
+  let genres = [selectedGenreCreate];
+  console.log(genres);
 
   const response = await createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
   // Tjekker hvis response er okay, hvis response er succesfuld ->
@@ -210,6 +216,12 @@ async function createMovieClicked(event) {
     form.reset();
     closeDialog();
   }
+}
+
+function getSelectedValue(event) {
+  selectedGenreCreate = event.target.value;
+  console.log(selectedGenreCreate);
+  return selectedGenreCreate;
 }
 
 function closeDialog() {
