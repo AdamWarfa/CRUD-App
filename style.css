@@ -65,7 +65,7 @@ header a {
 
 /* ========== DUNNO WHERE TO PUT THIS ========== */
 
-select {
+#select-sort-by {
   position: absolute;
   height: 2.2em;
   background: rgba(255, 255, 255, 0);
@@ -77,13 +77,14 @@ select {
   transition: box-shadow 200ms, border-color 200ms;
   color: rgb(0, 0, 0);
   top: -115%;
+  margin-top: 80px;
 }
 
-select option {
+.option-sort {
   background: rgba(209, 118, 212, 0.5);
 }
 
-select option:hover {
+.option-sort:hover {
   background: rgba(209, 118, 212, 0.5);
 }
 
@@ -175,7 +176,6 @@ nav {
 }
 
 #select-sort-by {
-  margin-top: 80px;
 }
 
 #menu {
@@ -246,6 +246,11 @@ nav {
 }
 
 /* ========== BUTTONS ========== */
+
+#genres-create-sort {
+  width: 100px;
+  height: 30px;
+}
 
 button {
   background-color: rgba(255, 255, 255, 0.2);
