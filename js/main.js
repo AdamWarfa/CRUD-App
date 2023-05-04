@@ -199,7 +199,7 @@ async function createMovieClicked(event) {
   const actors = form.actors.value;
   const posterUrl = form.posterUrl.value;
   const id = form.getAttribute("data-id");
-  const genres = [form.genres.value];
+  const genres = [form.target.genres.value];
 
   const response = await createMovie(title, director, year, runtime, plot, actors, posterUrl, genres, id);
   // Tjekker hvis response er okay, hvis response er succesfuld ->

@@ -99,16 +99,31 @@
         <input type="text" id="actors-create" name="actors" placeholder="Any mentionable actors?" required />
         <br />
         <br />
-        <label for="genres-create">Genres:</label>
+        <!-- <label for="genres-create">Genres:</label>
         <br />
         <input type="text" id="genres-create" pattern="[A-Za-z]{3,}+,[A-Za-z]{3,}+,[A-Za-z]{3,}" name="genres" placeholder="What are the genres?" required />
-        <br />
+        <br /> -->
+        <legend>Genre:</legend>
+        <label>
+          <input type="checkbox" name="Genres_drama" id="Drama" value="Drama" />Drama <input type="checkbox" name="Genres_horror" id="Horror" value="Horror" />Horror
+          <input type="checkbox" name="Genres_fantasy" id="Fantasy" value="Fantasy" />Fantasy <input type="checkbox" name="Genres_action" id="Action" value="Action" />Action
+          <input type="checkbox" name="Genres_adventure" id="Adventure" value="Adventure" />Adventure <input type="checkbox" name="Genres_animation" id="Animation" value="Animation" />Animation
+          <input type="checkbox" name="Genres_biography" id="Biography" value="Biography" />Biography <input type="checkbox" name="Genres_comedy" id="Comedy" value="Comedy" />Comedy
+          <input type="checkbox" name="Genres_crime" id="Crime" value="Crime" />Crime <input type="checkbox" name="Genres_drama" id="Drama" value="Drama" />Drama
+          <input type="checkbox" name="Genres_family" id="Family" value="Family" />Family <input type="checkbox" name="Genres_film-noir" id="Film-Noir" value="Film-Noir" />Film-Noir
+          <input type="checkbox" name="Genres_history" id="History" value="History" />History <input type="checkbox" name="Genres_music" id="Music" value="Music" />Music
+          <input type="checkbox" name="Genres_mystery" id="Mystery" value="Mystery" />Mystery <input type="checkbox" name="Genres_romance" id="Romance" value="Romance" />Romance
+          <input type="checkbox" name="Genres_sci-fi" id="Sci-Fi" value="Sci-Fi" />Sci-Fi <input type="checkbox" name="Genres_thriller" id="Thriller" value="Thriller" />Thriller
+          <input type="checkbox" name="Genres_sport" id="Sport" value="Sport" />Sport <input type="checkbox" name="Genres_war" id="War" value="War" />War
+        </label>
+
         <br />
         <label for="posterUrl-create">Poster URL:</label>
         <br />
         <input type="url" id="posterUrl-create" name="posterUrl" placeholder="Please enter the poster URL" required />
         <br />
         <br />
+        
         <button>Create Movie</button>
         <button type="button" id="btn-cancel-create-movie">Cancel</button>
       </form>
