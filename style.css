@@ -54,6 +54,11 @@ header a {
   cursor: pointer;
 }
 
+footer {
+  text-align: center;
+  color: rgb(255, 223, 226);
+}
+
 /* ========== LOGO ========== */
 
 #cmdb-logo {

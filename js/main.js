@@ -1,5 +1,4 @@
 import { getMovies, updateMovie, createMovie, deleteMovie } from "./rest-service.js";
-// import { sortMovies } from "./helpers.js";
 
 window.addEventListener("load", initApp);
 
@@ -61,8 +60,8 @@ function showMovie(movieObject) {
 <article class="list-entry">
   <img id="list-image" src = "${movieObject.posterUrl}"/>
   <h2 id="list-title">${movieObject.title}</h2>
-  <p id="list-director">${movieObject.director}</p>
-  <p id="list-genre">${movieGenre}</p>
+  <p id="list-director">Director: ${movieObject.director}</p>
+  <p id="list-genre">Genres: ${movieGenre}</p>
   <p id="list-runtime" >Runtime: ${movieObject.runtime} minutes (${movieObject.year})</p>
   <button id="btn-update">UPDATE</button>
   <button id="btn-delete">DELETE</button>
@@ -178,6 +177,7 @@ async function updateMovieClicked(event) {
     // Opdater MoviesGrid til at displaye all film og den nye film
     updateMoviesGrid();
     closeDialog();
+    alert("Movie updated!");
   }
 }
 
@@ -215,6 +215,7 @@ async function createMovieClicked(event) {
     updateMoviesGrid();
     form.reset();
     closeDialog();
+    alert("Movie created!");
   }
 }
 
@@ -251,6 +252,7 @@ async function deleteMovieClicked(event) {
     updateMoviesGrid();
     form.reset();
     closeDialog();
+    alert("Movie deleted!");
   }
 }
 
@@ -268,8 +270,6 @@ async function searchMovies(searchValue) {
 
 function sortMovies(event) {
   const selectedValue = event.target.value;
-  //   const movies = await getMovies();
-  //   await getMovies().sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   movies = movies.sort((a, b) => a[selectedValue].localeCompare(b[selectedValue]));
   showMovies(movies);
 }
@@ -286,20 +286,7 @@ function genreLinkClicked() {
   }
 }
 
-// async function filterGenre(event) {
-//   const movies = await getMovies();
-//   const selectedValue = event.target.value;
-
-//   return movies.filter((movie) => {
-//     const genreString = movie.genres?.toString();
-//     const genreFirst = genreString?.split(",")[0];
-//     return genreFirst?.toLowerCase().includes(selectedValue.toLowerCase());
-//   });
-// }
-
 async function filterGenre(selectedGenre) {
-  // const selectedGenre = event.target.dataset.genre;
-
   return (movies = movies.filter((movie) => movie.genres.includes(selectedGenre)));
 }
 
@@ -308,32 +295,5 @@ async function newGenreClicked(event) {
   movies = await getMovies();
   const selectedGenre = event.target.dataset.genre;
   movies = await filterGenre(selectedGenre);
-  // console.log(newMovieList);
   showMovies(movies);
 }
-
-//to do:
-/*
-Teknologier og programmeringskoncepter
-HTML, CSS og JavaScript - du må ikke anvende libraries eller frameworks, heller ikke CSS stylesheets, som du ikke selv har skrevet. Du må gerne lade dig inspirere af fx csslayout.io, w3schools, eksisterende GitHub Repositories - men lad være med at kopiere direkte.
-Events, DOM-manipulation, variabler, objekter, arrays, loops, funktioner med parametre og returværdier, events
-Anvendelse af et REST API og BaaS (backend as a service)
-Anvendelse af await, async, fetch og HTTP-metoderne GET, POST, PUT/PATCH og DELETE
-Formularer med typer, valideringen og restriktioner
-Fejlhåndtering i forbindelse med HTTP status-koder
-Submit-event(s)
-Array-metoder som fx .filter, .sort, .find
-Modules, import og export samt Separation of Concerns - din kode skal være opdelt i mindre specialiserede dele (funktioner og moduler) for at opnå god struktur.
-HTML-elementer som fx ul, ol, li, header, section, footer, form, label, button, input, og relaterede
-CSS Grid, CSS Flex og/eller HTML Table
-Git til samarbejde 
-
-Aflevering
-Som gruppe skal I aflevere en PDF med:
-
-Aktivitetsdiagrammer
-Et link til jeres kodebase på GitHub
-Et link til jeres kørende løsning på GitHub Pages
-Et screenshot af data fra jeres BaaS
-
-*/
